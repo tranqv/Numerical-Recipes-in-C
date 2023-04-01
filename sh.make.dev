@@ -71,12 +71,9 @@ _use_gfortran ()
 _use_gcc ()
 {
    COMP="gcc"
-#  DEPS="-Wall -fstack-arrays -static -finit-local-zero -std=legacy"
-#  DEPS="-Wall -fdefault-real-8"
 #  DEPS="-std=c90"
    DEPS="-ansi"
    OPTI="-O3"
-#  FLAG="$OPTI $DEPS -I ./ -J $IINC "
    FLAG="$OPTI $DEPS -I ./ -I $IINC "
 }
 
@@ -87,8 +84,7 @@ _use_gcc ()
 
 _use_ifort ()
 {
-#  COMP="ifort"
-   COMP="icc_run ifort"
+   COMP="ifort"
 #  DEPS="-fno-alias -static -zero "
    DEPS=" "
    OPTI="-O3"
@@ -98,9 +94,7 @@ _use_ifort ()
 
 _use_icc ()
 {
-#  COMP="ifort"
-   COMP="icc_run icc"
-#  DEPS="-fno-alias -static -zero "
+   COMP="icc"
 #  DEPS="-ansi"
    DEPS="-diag-disable=10441 -ansi"
    OPTI="-O3"
