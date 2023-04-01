@@ -27,6 +27,6 @@ For example, to run everything, you can run this command:
 
 The above command will compile all the codes in src/, prepare the header files, create the library libNRinC.a, compile all programs in test/ and run them right away. 
 
-You can see show to compile and link your program to the library. You can change everything inside the script sh.make.dev.
+You can see how to compile and link your program to the library. You can change everything inside the script sh.make.dev.
 
 Enjoy coding!
