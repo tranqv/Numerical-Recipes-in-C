@@ -2,8 +2,10 @@
 
 This package includes all the source codes of the well-known book:
 
-    Numerical Recipes in C: The Art of Scientific Computing, Second Edition 2nd Edition
+    Numerical Recipes in C: The Art of Scientific Computing (2nd Edition, 1997)
     by William H. Press, Brian P. Flannery, Saul A. Teukolsky, William T. Vetterling
+    
+    Software version 2.08
 
 Many things have been changed, e.g., all the names of subroutines, so that the code is more portable. 
 
