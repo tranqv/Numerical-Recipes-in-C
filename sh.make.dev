@@ -9,9 +9,9 @@
 #
 #        ./sh.make.dev
 #
-#     then you'll know what to do. Make sure you did in advance 
-#        chmod +x sh.make
-#     so that the script can run in such manner.
+#     then you'll know what to do. Make sure you install in advance 
+#
+#        gcc, ar, timeout 
 #
 ########################################################################
 
