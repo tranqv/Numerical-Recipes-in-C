@@ -13,6 +13,8 @@ Many things have been changed, e.g., all the names of subroutines, so that this 
 
 # How to use? 
 
+You should work in Linux. You need a C compiler, e.g., gcc, icc, and the ar and timeout commands. They can be installed easily.
+
 In Linux terminal, perform the command:
 
     bash sh.make.dev
@@ -22,5 +24,9 @@ Then, read the guide on your screen.
 For example, to run everything, you can run this command:
 
     bash sh.make.dev  all 
+
+The above command will compile all the codes in src/, prepare the header files, create the library libNRinC.a, compile all programs in test/ and run them right away. 
+
+You can see show to compile and link your program to the library. You can change everything inside the script sh.make.dev.
 
 Enjoy coding!
