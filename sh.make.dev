@@ -1,0 +1,764 @@
+#!/bin/bash 
+#
+
+########################################################################
+#
+#     How to use this script? 
+#
+#     Simply run this command:
+#
+#        ./sh.make.dev
+#
+#     then you'll know what to do. Make sure you did in advance 
+#        chmod +x sh.make
+#     so that the script can run in such manner.
+#
+########################################################################
+
+
+   aDIR=( src test main )
+   nDIR=${#aDIR[@]}
+
+   aSRC=( src )
+   nSRC=${#aSRC[@]}
+
+   aLIB=( libNRinC.a )
+
+   TST="test" 
+   DAT="data" 
+   MAI="main" 
+
+   ODIR=${HOME}/apps/shared
+
+   build=${ODIR}/build 
+
+   OTMP=${build}/tmp 
+
+   OBIN=${ODIR}/bin 
+   OLIB=${ODIR}/lib
+   OINC=${ODIR}/include 
+   OOBJ=${ODIR}/obj 
+
+   IINC=`pwd`/src 
+
+   libna='libNRinC.a'
+
+   mylib=${OLIB}/${libna}
+
+   COMP=""
+   DEPS=""
+   OPTI=""
+   FLAG=""
+
+#  arFLAG="r"
+   arFLAG="rcs"
+
+
+#
+#  GNU COMPILER:
+#
+
+_use_gfortran ()
+{
+   COMP="gfortran"
+#  DEPS="-Wall -fstack-arrays -static -finit-local-zero -std=legacy"
+   DEPS="-std=legacy"
+   OPTI="-O3"
+#  FLAG="$OPTI $DEPS -I ./ -J $IINC -I $IINC "
+   FLAG="$OPTI $DEPS -I ./ -J $IINC "
+}
+
+_use_gcc ()
+{
+   COMP="gcc"
+#  DEPS="-Wall -fstack-arrays -static -finit-local-zero -std=legacy"
+#  DEPS="-Wall -fdefault-real-8"
+#  DEPS="-std=c90"
+   DEPS="-ansi"
+   OPTI="-O3"
+#  FLAG="$OPTI $DEPS -I ./ -J $IINC "
+   FLAG="$OPTI $DEPS -I ./ -I $IINC "
+}
+
+
+#
+#  INTEL COMPILER:
+#  
+
+_use_ifort ()
+{
+#  COMP="ifort"
+   COMP="icc_run ifort"
+#  DEPS="-fno-alias -static -zero "
+   DEPS=" "
+   OPTI="-O3"
+   FLAG="$OPTI $DEPS -I./ -module $IINC -I$IINC "
+}
+#
+
+_use_icc ()
+{
+#  COMP="ifort"
+   COMP="icc_run icc"
+#  DEPS="-fno-alias -static -zero "
+#  DEPS="-ansi"
+   DEPS="-diag-disable=10441 -ansi"
+   OPTI="-O3"
+   FLAG="$OPTI $DEPS -I./ -I$IINC "
+}
+#
+#  icc: remark #10441: The Intel(R) C++ Compiler Classic (ICC) is deprecated and will be removed from product release in the second half of 2023. The Intel(R) oneAPI DPC++/C++ Compiler (ICX) is the recommended compiler moving forward. Please transition to use this compiler. Use '-diag-disable=10441' to disable this message.
+#
+
+#
+#  CHOOSE YOUR COMPILER:
+
+#  _use_gfortran 
+#  _use_ifort 
+
+#  _use_icc 
+   _use_gcc 
+
+
+   echo "COMP = $COMP"
+   echo "DEPS = $DEPS"
+   echo "OPTI = $OPTI"
+## echo "FLAG = $FLAG"
+
+   echo "arFLAG = $arFLAG"
+
+   mkdir -p $OLIB $OINC $OBIN $OOBJ $build 
+
+#######################################################################
+#
+#  subroutines:
+#
+#######################################################################
+
+_print_usage ()
+{
+cat << XXX
+      COMMAND         ARGUMENT       ROUTINE 
+      $0       lib            _make_lib 
+      $0       test           _make_test  
+      $0       cleanmd5       _clean_md5 
+      $0       clean          _make_clean 
+      $0       distclean      _make_distclean 
+      $0       all            _make_lib && _make_test 
+      $0       showme         _make_showme    
+
+Examples:             
+      $0  all         to run everything, i.e., ./sh_make src, lib, and test.
+      $0  distclean   to clean all the outputs. 
+      $0  clean       to clean only the .o, .exe files
+      $0  cleanmd5    to clean md5 files so that we can recompile all
+      $0  lib         to make the lib ${libna} file. 
+      $0  test        to compile, link, and run all the tests.
+      $0  showme      to show flags to compile programs and link to the lib.
+
+At the first time, we can run the following commands stepwise:
+      $0  cleanmd5    
+      $0  lib        
+      $0  test      
+XXX
+}
+#
+
+
+
+_ischanged()
+{
+   res=0
+
+   if [ $# -ge 1 ]
+   then 
+
+      file=$1
+      fingerprintfile=/tmp/${1}.md5savefile
+
+      if [ ! -f $file ]
+      then
+         echo "Warning: $file does not exist!"
+         res=0
+      else 
+         filemd5=`md5sum $file | cut -d " " -f1`
+#
+#        check md5 and show error when we meet empty file
+#
+         if [ -z $filemd5 ]
+         then
+            echo "Warning: File $filemd5 is empty"
+            res=0
+            echo $res 
+            return 
+         fi
+
+         if [ -f $fingerprintfile ]
+         then
+#           get the saved md5
+            savedmd5=`cat $fingerprintfile`
+
+#           check again if its empty
+            if [ -z $savedmd5 ]
+            then
+               echo "Warning: File $savedmd5The is empty"
+               res=0
+               echo $res 
+               return 
+            fi
+
+#           compare the saved md5 with the one we have now
+            if [ "$savedmd5" = "$filemd5" ]
+            then
+#              echo "Ok. File $file has NOT been changed"
+               res=0
+            else
+#              echo "Ok. File $file has been changed"
+               res=1 
+            fi
+
+         else #if [ ! -f $fingerprintfile ];  then
+
+            res=1
+
+         fi
+         echo $filemd5 > $fingerprintfile
+      fi 
+   fi 
+#
+   echo $res 
+   return 
+}
+#
+
+_clean_md5savefile()
+{
+   if [ $# -ge 1 ]
+   then 
+      file=$1
+      fingerprintfile=/tmp/${1}.md5savefile
+      if [ -f $file ]
+      then
+         if [ -f $fingerprintfile ]
+         then 
+            /bin/rm $fingerprintfile
+            echo "OK. $fingerprintfile removed."
+         else 
+            echo "OK. $fingerprintfile not found."
+         fi 
+      else
+         echo "Warning: $file unknown. Skip!"
+      fi 
+   fi 
+}
+#
+
+_clean_md5_prim ()
+{
+   for f in *.c 
+   do
+      _clean_md5savefile $f 
+   done 
+}
+
+
+_clean_md5 ()
+{
+   here=`pwd`
+   for (( i=0; i<${nDIR}; i++ ))
+   do 
+      d=${aDIR[$i]}
+      if [ -d $d ]
+      then 
+         cd $d 
+         _clean_md5_prim 
+         cd $here 
+      fi 
+   done 
+   unset here 
+}
+#
+
+
+
+_make_test ()
+{
+   echo "########################################################################"
+   echo "Go to $TST"
+
+   here=`pwd`
+
+   aux="$OPTI $DEPS"
+
+   cd $TST
+   ln -fs ../${DAT}/* . 
+
+   for f in `ls *.c`
+   do 
+      echo '----------------------------------------------------------'
+      g=`basename $f .c`.exe 
+      set -x 
+      ${COMP} ${OPTI} ${DEPS} -I${OINC}  $f  $mylib -lm -o $g 
+      timeout 1s ./$g
+      set +x 
+   done 
+
+#  rm  *.dat
+   cd  .. 
+
+   cd $here 
+   unset here 
+#
+   echo "Done. Leave $TST"
+   echo 
+   echo "Note: Tests which need input from keyboard will be skiped"
+   echo "      Run them manually later."
+   echo 
+   echo "########################################################################"
+}
+#
+
+
+
+_make_main ()
+{
+   echo "########################################################################"
+   echo "Go to $MAI "
+
+   here=`pwd`
+
+   aux="$OPTI $DEPS"
+
+   cd $MAI
+
+#  ln -fs ../${DAT}/* . 
+
+   for f in `ls *.c`
+   do 
+      echo '----------------------------------------------------------'
+      g=`basename $f .c`.exe 
+      set -x 
+      ${COMP} ${OPTI} ${DEPS} -I${OINC}  $f  $mylib -lm -o $g 
+      timeout 5s ./$g
+      set +x 
+   done 
+
+#  rm  *.dat
+   cd  .. 
+
+   cd $here 
+   unset here 
+#
+   echo "Done. Leave $MAI"
+   echo 
+   echo "Note: Tests which need input from keyboard will be skiped"
+   echo "      Run them manually later."
+   echo 
+   echo "########################################################################"
+}
+#
+
+
+_make_showme ()
+{
+cat << XXX
+USAGE: 
+   ${COMP} ${OPTI} ${DEPS} -I${OINC}  main.c $mylib -lm
+
+EXAMPLES:
+   ${COMP} ${OPTI} ${DEPS} -I${OINC}  test/xairy.c $mylib -lm
+   ./a.out 
+
+XXX
+
+}
+
+_make_clean_prim ()
+{
+   d=$1; shift;
+   if [ -d $d ]
+   then 
+      echo "Go to ${d}/"
+      cd $d 
+      echo "   rm -f *.o *.mod *.exe *.a *.out"
+      rm -f *.o *.mod *.exe *.a *.out
+      echo "Left ${d}/."
+   fi 
+}  
+# 
+
+
+
+_make_clean ()
+{
+   here=`pwd`
+#
+   for (( i=0; i<${nDIR}; i++ ))
+   do 
+      d=${aDIR[$i]}
+      _make_clean_prim $d 
+      cd $here 
+   done 
+#
+   for d in $TST
+   do
+      _make_clean_prim EXAMPLES/$d 
+      cd $here 
+   done 
+#
+   unset here 
+}  
+# 
+
+ 
+_make_distclean () 
+{
+   _clean_md5 
+   _make_clean
+   echo "   /bin/rm -rf ${OLIB} ${OINC} ${OOBJ} ${build}"
+   /bin/rm -rf ${OLIB} ${OINC} ${OOBJ} ${build}
+}
+#
+
+
+_make_src ()
+{
+   for (( i=0; i<${nSRC}; i++ ))
+   do 
+      d=${aSRC[$i]}
+      mkdir -p ${OOBJ}/${d}
+      _make_src_prim $d ${OOBJ}/${d}
+   done 
+}
+
+
+_make_src_prim () 
+{
+   src=$1; shift; 
+   out=$1; shift; 
+#
+   if [ -d "$src" ] 
+   then 
+      echo "Directory $src exists."
+   else 
+      echo "Error: Directory $src does not exist!"
+      exit 1 
+   fi
+#
+   if [ -d "$out" ] 
+   then 
+      echo "Directory $out exists."
+   else 
+      echo "Warning: Directory $out does not exist. Create it!"
+   fi
+#
+   here=`pwd`
+#
+   echo "########################################################################"
+   echo "Compiling *.c inside $src --> $out ..."
+#
+#  Compiling Fortran codes
+#
+   cd $src 
+   echo "Entering $src ..."
+#
+#  source codes:
+   for f in *.c
+   do 
+      if [ -f $f ]
+      then 
+         g=`basename $f`
+         h=`echo $g | sed 's/\.c//g'`
+         if [[ $( _ischanged $g ) -eq 1 ]]
+         then 
+            echo "${COMP} ${FLAG} -c  $f  -o ${out}/${h}.o" 
+            time  ${COMP} ${FLAG} -c  $f  -o ${out}/${h}.o  
+#        else 
+#           echo "${f} is not changed. Skipped."        
+         fi 
+      fi 
+   done
+#
+#  include:
+   for f in ${IINC}/*.h 
+   do 
+      if [ -f $f ]
+      then 
+         cp -f  $f  ${OINC}/ 
+      fi
+   done 
+#
+   cd $here 
+   echo "Leaving $src."
+#
+   unset f here 
+   echo "Compiling Done."
+   echo "########################################################################"
+}
+#
+
+
+
+_make_lib ()
+{
+   echo "########################################################################"
+   echo "Making lib *.a ..."
+#
+   _make_src 
+#
+   set -x 
+#
+   List=''
+#
+   for (( i=0; i<${nSRC}; i++ ))
+   do 
+      d=${aSRC[$i]}
+      List=" $List ${OOBJ}/${d}/*.o "
+   done 
+
+
+
+
+
+
+#
+#
+#  for (( i=0; i<${nDIR}; i++ ))
+#  do 
+#     d=${aDIR[$i]}
+#     l=${aLIB[$i]}
+#     ar  $arFLAG  ${build}/${libna}  $build/${d}/*.o   
+#  done 
+#  ranlib ${build}/${libna} 
+#
+   /bin/rm -rf ${mylib}
+   ar  $arFLAG  ${mylib}  $List 
+#
+   set +x 
+#
+   echo "Done ${mylib}. "
+   echo "Check *.a in ${OLIB}"
+   echo "Check *.h in ${OINC}"
+   echo "########################################################################"
+}
+#
+
+
+#######################################################################
+#
+#  main:
+#
+#######################################################################
+
+#  set -x 
+
+if [ $# -gt 0 ] 
+then 
+   opt=$1
+   if    [ "$opt" = "clean" ]
+   then
+      _make_clean 
+   elif  [ "$opt" = "distclean" ]
+   then
+      _make_distclean 
+   elif  [ "$opt" = "test" ]
+   then
+      _make_test  
+   elif  [ "$opt" = "main" ]
+   then
+      _make_main  
+   elif  [ "$opt" = "lib" ] 
+   then 
+      _make_lib 
+   elif  [ "$opt" = "all" ] 
+   then 
+      _clean_md5
+      _make_lib
+      _make_test 
+   elif [ "$opt" = "cleanmd5" ]
+   then 
+      _clean_md5
+   elif [ "$opt" = "showme" ]
+   then 
+      _make_showme 
+   else
+      _print_usage 
+      exit 1 ; 
+   fi 
+else
+   _print_usage 
+   exit 1 ; 
+fi 
+
+#  set +x 
+
+########################################################################
+# 
+#  GCC: Some Dialect Options
+#
+#     https://gcc.gnu.org/onlinedocs/gcc/C-Dialect-Options.html
+# 
+# -ansi
+# 
+#     In C mode, this is equivalent to -std=c90. In C++ mode, it is equivalent to -std=c++98.
+# 
+#     This turns off certain features of GCC that are incompatible with ISO C90 
+#  (when compiling C code), or of standard C++ (when compiling C++ code), such as the asm 
+#  and typeof keywords, and predefined macros such as unix and vax that identify the type 
+#  of system you are using. It also enables the undesirable and rarely used ISO trigraph 
+#  feature. For the C compiler, it disables recognition of C++ style ‘//’ comments as well as 
+#  the inline keyword.
+# 
+#     The alternate keywords __asm__, __extension__, __inline__ and __typeof__ continue to 
+#  work despite -ansi. You would not want to use them in an ISO C program, of course, but it is 
+#  useful to put them in header files that might be included in compilations done with -ansi. 
+#  Alternate predefined macros such as __unix__ and __vax__ are also available, with or 
+#  without -ansi.
+# 
+#     The -ansi option does not cause non-ISO programs to be rejected gratuitously. For that, 
+#  -Wpedantic is required in addition to -ansi. See Warning Options.
+# 
+#     The macro __STRICT_ANSI__ is predefined when the -ansi option is used. Some header files 
+#  may notice this macro and refrain from declaring certain functions or defining certain macros 
+#  that the ISO standard doesn’t call for; this is to avoid interfering with any programs that 
+#  might use these names for other things.
+# 
+#     Functions that are normally built in but do not have semantics defined by ISO C (such as 
+#  alloca and ffs) are not built-in functions when -ansi is used. See Other built-in functions 
+#  provided by GCC, for details of the functions affected.
+#
+#
+# -std=
+# 
+#     Determine the language standard. See Language Standards Supported by GCC, for details of 
+#  these standard versions. This option is currently only supported when compiling C or C++.
+# 
+#     The compiler can accept several base standards, such as ‘c90’ or ‘c++98’, and GNU dialects 
+#  of those standards, such as ‘gnu90’ or ‘gnu++98’. When a base standard is specified, the 
+#  compiler accepts all programs following that standard plus those using GNU extensions that 
+#  do not contradict it. For example, -std=c90 turns off certain features of GCC that are 
+#  incompatible with ISO C90, such as the asm and typeof keywords, but not other GNU extensions 
+#  that do not have a meaning in ISO C90, such as omitting the middle term of a ?: expression. 
+#  On the other hand, when a GNU dialect of a standard is specified, all features supported by 
+#  the compiler are enabled, even when those features change the meaning of the base standard. 
+#  As a result, some strict-conforming programs may be rejected. The particular standard is 
+#  used by -Wpedantic to identify which features are GNU extensions given that version of the 
+#  standard. For example -std=gnu90 -Wpedantic warns about C++ style ‘//’ comments, while 
+#  -std=gnu99 -Wpedantic does not.
+# 
+#     A value for this option must be provided; possible values are
+# 
+#     ‘c90’
+#     ‘c89’
+#     ‘iso9899:1990’
+# 
+#         Support all ISO C90 programs (certain GNU extensions that conflict with ISO C90 are 
+#  disabled). Same as -ansi for C code.
+#     ‘iso9899:199409’
+# 
+#         ISO C90 as modified in amendment 1.
+#     ‘c99’
+#     ‘c9x’
+#     ‘iso9899:1999’
+#     ‘iso9899:199x’
+# 
+#         ISO C99. This standard is substantially completely supported, modulo bugs and 
+#  floating-point issues (mainly but not entirely relating to optional C99 features from 
+#  Annexes F and G). See https://gcc.gnu.org/c99status.html for more information. The names 
+#  ‘c9x’ and ‘iso9899:199x’ are deprecated.
+#     ‘c11’
+#     ‘c1x’
+#     ‘iso9899:2011’
+# 
+#         ISO C11, the 2011 revision of the ISO C standard. This standard is substantially 
+#  completely supported, modulo bugs, floating-point issues (mainly but not entirely relating 
+#  to optional C11 features from Annexes F and G) and the optional Annexes K (Bounds-checking 
+#  interfaces) and L (Analyzability). The name ‘c1x’ is deprecated.
+#     ‘c17’
+#     ‘c18’
+#     ‘iso9899:2017’
+#     ‘iso9899:2018’
+# 
+#         ISO C17, the 2017 revision of the ISO C standard (published in 2018). This standard 
+#  is same as C11 except for corrections of defects (all of which are also applied with -std=c11) 
+#  and a new value of __STDC_VERSION__, and so is supported to the same extent as C11.
+#     ‘c2x’
+# 
+#         The next version of the ISO C standard, still under development. The support for 
+#  this version is experimental and incomplete.
+#     ‘gnu90’
+#     ‘gnu89’
+# 
+#         GNU dialect of ISO C90 (including some C99 features).
+#     ‘gnu99’
+#     ‘gnu9x’
+# 
+#         GNU dialect of ISO C99. The name ‘gnu9x’ is deprecated.
+#     ‘gnu11’
+#     ‘gnu1x’
+# 
+#         GNU dialect of ISO C11. The name ‘gnu1x’ is deprecated.
+#     ‘gnu17’
+#     ‘gnu18’
+# 
+#         GNU dialect of ISO C17. This is the default for C code.
+#     ‘gnu2x’
+# 
+#         The next version of the ISO C standard, still under development, plus GNU 
+#  extensions. The support for this version is experimental and incomplete.
+#     ‘c++98’
+#     ‘c++03’
+# 
+#         The 1998 ISO C++ standard plus the 2003 technical corrigendum and some additional 
+#  defect reports. Same as -ansi for C++ code.
+#     ‘gnu++98’
+#     ‘gnu++03’
+# 
+#         GNU dialect of -std=c++98.
+#     ‘c++11’
+#     ‘c++0x’
+# 
+#         The 2011 ISO C++ standard plus amendments. The name ‘c++0x’ is deprecated.
+#     ‘gnu++11’
+#     ‘gnu++0x’
+# 
+#         GNU dialect of -std=c++11. The name ‘gnu++0x’ is deprecated.
+#     ‘c++14’
+#     ‘c++1y’
+# 
+#         The 2014 ISO C++ standard plus amendments. The name ‘c++1y’ is deprecated.
+#     ‘gnu++14’
+#     ‘gnu++1y’
+# 
+#         GNU dialect of -std=c++14. The name ‘gnu++1y’ is deprecated.
+#     ‘c++17’
+#     ‘c++1z’
+# 
+#         The 2017 ISO C++ standard plus amendments. The name ‘c++1z’ is deprecated.
+#     ‘gnu++17’
+#     ‘gnu++1z’
+# 
+#         GNU dialect of -std=c++17. This is the default for C++ code. The name ‘gnu++1z’ is deprecated.
+#     ‘c++20’
+#     ‘c++2a’
+# 
+#         The 2020 ISO C++ standard plus amendments. Support is experimental, and could change 
+#  in incompatible ways in future releases. The name ‘c++2a’ is deprecated.
+#     ‘gnu++20’
+#     ‘gnu++2a’
+# 
+#         GNU dialect of -std=c++20. Support is experimental, and could change in incompatible 
+#  ways in future releases. The name ‘gnu++2a’ is deprecated.
+#     ‘c++2b’
+#     ‘c++23’
+# 
+#         The next revision of the ISO C++ standard, planned for 2023. Support is highly 
+#  experimental, and will almost certainly change in incompatible ways in future releases.
+#     ‘gnu++2b’
+#     ‘gnu++23’
+# 
+#         GNU dialect of -std=c++2b. Support is highly experimental, and will almost 
+#  certainly change in incompatible ways in future releases.
+# 
+#
+#
