@@ -13,7 +13,9 @@ Many things have been changed, e.g., all the names of subroutine. This version o
 
 # How to use? 
 
-It works in Linux. You need a C compiler, e.g., gcc or icc. You also need the ar and timeout commands.
+It works in Linux. 
+
+You need a C compiler, e.g., gcc or icc. You also need the ar and timeout commands, where timeout is only for running tests.
 
 In Linux terminal, perform the command:
 
@@ -29,6 +31,6 @@ The latter command compiles all the codes in src/, prepares the header files, cr
 
 You can see how to compile and link your program to the library. You can change everything inside the script sh.make.dev.
 
-One more thing: all real numbers are compiled with double precision (i.e., 8 bytes, double) instead of single precision (4 bytes, float) as in the original version. Make your own setting in src/nrc_types.h !
+One more thing: all real numbers are compiled with double precision (i.e., 8 bytes, double) instead of single precision (4 bytes, float) as in the original version. Make your own setting in src/nrc_types.h.
 
 Enjoy coding!
