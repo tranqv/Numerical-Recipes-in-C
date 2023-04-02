@@ -14,6 +14,11 @@ static sReal fx ( sReal x )
 
 int main ( void )
 {
+
+/* I skip this */
+   printf ( "\nSKIP!\n" ) ; 
+   return 1; 
+
    nrc_scrsho ( fx ); 
    return 0; 
 }

@@ -43,7 +43,7 @@ int main ( void )
    nrc_sprsin ( a, NP, 0.5, NMAX, sa, ija ); 
    nrc_sprsin ( b, NP, 0.5, NMAX, sb, ijb ); 
    nrc_sprstp ( sb, ijb, sbt, ijbt ); 
-   /* specify tridiagonal output,  using fact that a is tridiagonal */
+   /* specify tridiagonal output, using fact that a is tridiagonal */
    for ( i = 1; i <= ija[ija[1]- 1]- 1; i ++ ) ijc[i]= ija[i]; 
    nrc_sprspm ( sa, ija, sbt, ijbt, sc, ijc ); 
    for ( i = 1; i <= NP; i ++ ) {

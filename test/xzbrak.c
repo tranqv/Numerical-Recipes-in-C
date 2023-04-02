@@ -29,7 +29,7 @@ int main ( void )
    printf ( "\nbrackets for roots of nrc_bessj0:\n" ); 
    printf ( "%21s %10s %16s %10s\n", "lower", "upper", "f ( lower )", "f ( upper )" ); 
    for ( i = 1; i <= nb; i ++ )
-      printf ( "%s %2d  %10.4f %10.4f %3s %10.4f %10.4f\n", 
+      printf ( "%s %2d %10.4f %10.4f %3s %10.4f %10.4f\n", 
          "  root ", i, xb1[i], xb2[i], " ", 
          fx ( xb1[i] ), fx ( xb2[i] ) ); 
    nrc_free_vector ( xb2, 1, NBMAX ); 

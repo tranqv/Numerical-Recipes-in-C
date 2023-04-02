@@ -26,7 +26,7 @@ int main ( void )
    fgets ( txt, MAXSTR, fp ); 
    for ( i = 1; i <= NP; i ++ ) fscanf ( fp, "%lf", &a[i] ); 
    fclose ( fp ); 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "Input k\n" ); 
       if ( scanf ( "%lu", &k ) == EOF ) break; 
       for ( i = 1; i <= NP; i ++ ) b[i]= a[i]; 

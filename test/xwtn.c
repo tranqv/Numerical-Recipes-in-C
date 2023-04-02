@@ -27,7 +27,7 @@ int main ( void )
          aorg[l]= a[l]=( i == j ? - 1.0 : 1.0/sqrt ( fabs ( ( sReal )( i - j ) ) ) ); 
       }
    nrc_wtn ( a, ndim, 2, 1, nrc_pwt ); 
-   /* here,  one might set the smallest components to zero,  encode and transmit
+   /* here, one might set the smallest components to zero, encode and transmit
    the remaining components as a compressed form of the "image" */
    nrc_wtn ( a, ndim, 2, - 1, nrc_pwt ); 
    for ( l = 1; l <= ntot; l ++ ) {

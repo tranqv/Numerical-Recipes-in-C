@@ -40,7 +40,7 @@ int main ( void )
    /* nrc_sort array a while mixing b and c */
    nrc_sort3 ( NLEN, a, b, c ); 
    /* scramble message according to array b */
-   bmsg[NLEN]= amsg[NLEN];   /* null terminating character */
+   bmsg[NLEN]= amsg[NLEN]; /* null terminating character */
    for ( i = 1; i <= NLEN; i ++ ) {
       j = b[i]; 
       bmsg[i - 1]= amsg[j - 1]; 

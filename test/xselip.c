@@ -37,7 +37,7 @@ int main ( void )
       for ( j = 1; j <= 10; j ++ ) printf ( "%7.2f", b[10*i + j] ); 
       printf ( "\n" ); 
    }
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "Input k\n" ); 
       if ( scanf ( "%lu", &k ) == EOF ) break; 
       q = nrc_selip ( k, NP, a ); 

@@ -20,28 +20,12 @@ int main ( void )
    int i, j, nlim; 
 
    data = nrc_vector ( 1, NP ); 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "\nPeriod of sinusoid in channels ( 3 -%2d )\n", NP ); 
-      scanf ( "%f", &per ); 
+      scanf ( "%lf", &per ); 
       if ( per <= 0.0 ) break; 
       for ( i = 1; i <= NP; i ++ )
          data[i]= sin ( 2.0*PI*( i - 1 )/per ); 
-      nrc_sinft ( data, NP ); 
-      big = - 1.0e10; 
-      small = 1.0e10; 
-      for ( i = 1; i <= NP; i ++ ) {
-         if  ( data[i] < small ) small = data[i]; 
-         if  ( data[i] > big ) big = data[i]; 
-      }
-      scal = WIDTH/( big - small ); 
-      for ( i = 1; i <= NP; i ++ ) {
-         nlim =( int ) ( scal*( data[i]- small )+ EPS + 0.5 ); 
-         printf ( "%4d  ", i ); 
-         for ( j = 1; j <= nlim + 1; j ++ ) printf ( "*" ); 
-         printf ( "\n" ); 
-      }
-      printf ( "press RETURN to continue ...\n" ); 
-      ( void ) getchar (  ); 
       nrc_sinft ( data, NP ); 
       big = - 1.0e10; 
       small = 1.0e10; 
@@ -52,7 +36,23 @@ int main ( void )
       scal = WIDTH/( big - small ); 
       for ( i = 1; i <= NP; i ++ ) {
          nlim =( int ) ( scal*( data[i]- small )+ EPS + 0.5 ); 
-         printf ( "%4d  ", i ); 
+         printf ( "%4d ", i ); 
+         for ( j = 1; j <= nlim + 1; j ++ ) printf ( "*" ); 
+         printf ( "\n" ); 
+      }
+      printf ( "press RETURN to continue ...\n" ); 
+      ( void ) getchar ( ); 
+      nrc_sinft ( data, NP ); 
+      big = - 1.0e10; 
+      small = 1.0e10; 
+      for ( i = 1; i <= NP; i ++ ) {
+         if ( data[i] < small ) small = data[i]; 
+         if ( data[i] > big ) big = data[i]; 
+      }
+      scal = WIDTH/( big - small ); 
+      for ( i = 1; i <= NP; i ++ ) {
+         nlim =( int ) ( scal*( data[i]- small )+ EPS + 0.5 ); 
+         printf ( "%4d ", i ); 
          for ( j = 1; j <= nlim + 1; j ++ ) printf ( "*" ); 
          printf ( "\n" ); 
       }

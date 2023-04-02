@@ -61,7 +61,7 @@ int main ( void )
       printf ( "\n" ); 
       printf ( "***********************************\n" ); 
       printf ( "press return for next problem:\n" ); 
-      ( void ) getchar (  ); 
+      ( void ) getchar ( ); 
    }
    fclose ( fp ); 
    nrc_free_vector ( u, 1, NP ); 

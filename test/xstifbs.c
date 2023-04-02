@@ -8,7 +8,7 @@
 #include "nrc.h"
 #include "nrc_util.h"
 
-int kmax, kount;         /* defining declarations */
+int kmax, kount; /* defining declarations */
 sReal *xp, **yp, dxsav; 
 
 int main ( void )
@@ -16,9 +16,9 @@ int main ( void )
    sReal eps, hstart, x1 = 0.0, x2 = 50.0, y[4]; 
    int nbad, nok; 
 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "Enter eps, hstart\n" ); 
-      if ( scanf ( "%f %f", &eps, &hstart ) == EOF ) break; 
+      if ( scanf ( "%lf %lf", &eps, &hstart ) == EOF ) break; 
       kmax = 0; 
       y[1]= y[2]= 1.0; 
       y[3]= 0.0; 

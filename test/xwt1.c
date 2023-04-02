@@ -21,9 +21,9 @@ int main ( void )
    u = nrc_vector ( 1, NMAX ); 
    v = nrc_vector ( 1, NMAX ); 
    w = nrc_vector ( 1, NMAX ); 
-   for ( ; ;  ) {
-      printf ( "Enter k ( 4,  - 4,  12,  or 20 ) and frac ( 0.0 to 1.0 ):\n" ); 
-      if ( scanf ( "%d %f", &k, &frac ) == EOF ) break; 
+   for ( ; ; ) {
+      printf ( "Enter k ( 4, - 4, 12, or 20 ) and frac ( 0.0 to 1.0 ):\n" ); 
+      if ( scanf ( "%d %lf", &k, &frac ) == EOF ) break; 
       frac = FMIN ( 1.0, FMAX ( 0.0, frac ) ); 
       itest =( k == - 4 ? 1 : 0 ); 
       if ( k < 0 ) k = - k; 

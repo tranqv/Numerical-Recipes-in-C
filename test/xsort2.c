@@ -30,7 +30,7 @@ int main ( void )
    for ( i = 1; i <= NP; i ++ ) b[i]= i; 
    /* nrc_sort a and mix b */
    nrc_sort2 ( NP, a, b ); 
-   printf ( "\nAfter sorting a and mixing b,  array a is:\n" ); 
+   printf ( "\nAfter sorting a and mixing b, array a is:\n" ); 
    for ( i = 0; i <= 9; i ++ ) {
       for ( j = 1; j <= 10; j ++ ) printf ( "%7.2f", a[10*i + j] ); 
       printf ( "\n" ); 
@@ -41,10 +41,10 @@ int main ( void )
       printf ( "\n" ); 
    }
    printf ( "press return to continue...\n" ); 
-   ( void ) getchar (  ); 
+   ( void ) getchar ( ); 
    /* nrc_sort b and mix a */
    nrc_sort2 ( NP, b, a ); 
-   printf ( "\nAfter sorting b and mixing a,  array a is:\n" ); 
+   printf ( "\nAfter sorting b and mixing a, array a is:\n" ); 
    for ( i = 0; i <= 9; i ++ ) {
       for ( j = 1; j <= 10; j ++ ) printf ( "%7.2f", a[10*i + j] ); 
       printf ( "\n" ); 

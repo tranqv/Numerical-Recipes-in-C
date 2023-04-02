@@ -28,7 +28,7 @@ void prntft ( sReal data[], unsigned long nn )
          data[2*nn + 2 - n], data[2*nn + 3 - n] ); 
    }
    printf ( " press return to continue ...\n" ); 
-   ( void ) getchar (  ); 
+   ( void ) getchar ( ); 
    return; 
 }
 
@@ -54,10 +54,10 @@ int main ( void )
    /* Invert transform */
    isign = - 1; 
    nrc_four1 ( fft1, N, isign ); 
-   printf ( "inverted transform  =  first function:\n" ); 
+   printf ( "inverted transform =  first function:\n" ); 
    prntft ( fft1, N ); 
    nrc_four1 ( fft2, N, isign ); 
-   printf ( "inverted transform  =  second function:\n" ); 
+   printf ( "inverted transform =  second function:\n" ); 
    prntft ( fft2, N ); 
    nrc_free_vector ( fft2, 1, N2 ); 
    nrc_free_vector ( fft1, 1, N2 ); 

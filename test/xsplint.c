@@ -9,6 +9,8 @@
 #include "nrc.h"
 #include "nrc_util.h"
 
+#include <math.h>
+
 #define NP 10
 #define PI 3.1415926
 
@@ -43,7 +45,7 @@ int main ( void )
       /* Call nrc_spline to get second derivatives */
       nrc_spline ( xa, ya, NP, yp1, ypn, y2 ); 
       /* Call nrc_splint for interpolations */
-      printf ( "\n%9s %13s %17s\n", "x", "f ( x )", "interpolation" ); 
+      printf ( "\n%9s %13s %17s %10s\n", "x", "f ( x )", "interpolation", "Error" ); 
       for ( i = 1; i <= 10; i ++ ) {
          if ( nfunc == 1 ) {
             x =( - 0.05 + i/10.0 )*PI; 
@@ -53,11 +55,11 @@ int main ( void )
             f = exp ( x ); 
          }
          nrc_splint ( xa, ya, y2, NP, x, &y ); 
-         printf ( "%12.6f %12.6f %12.6f\n", x, f, y ); 
+         printf ( "%12.6f %12.6f %12.6f %10.3E\n", x, f, y, fabs ( f - y ) ); 
       }
       printf ( "\n***********************************\n" ); 
       printf ( "Press RETURN\n" ); 
-      ( void ) getchar (  ); 
+      ( void ) getchar ( ); 
    }
    nrc_free_vector ( y2, 1, NP ); 
    nrc_free_vector ( ya, 1, NP ); 

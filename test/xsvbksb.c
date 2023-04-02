@@ -1,7 +1,7 @@
 
 #include "nrc_types.h"
 
-/* Driver for routine nrc_svbksb,  which calls routine nrc_svdcmp */
+/* Driver for routine nrc_svbksb, which calls routine nrc_svdcmp */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -74,7 +74,7 @@ int main ( void )
       }
       printf ( "***********************************\n" ); 
       printf ( "press RETURN for next problem\n" ); 
-      ( void ) getchar (  ); 
+      ( void ) getchar ( ); 
    }
    fclose ( fp ); 
    nrc_free_matrix ( v, 1, NP, 1, NP ); 

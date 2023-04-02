@@ -32,9 +32,9 @@ int main ( void )
    t = nrc_vector ( 1, N ); 
    f = nrc_matrix ( 1, M, 1, N ); 
    nrc_voltra ( N, M, t0, H, t, f, g, ak ); 
-   /* exact soln is f[1]= exp ( - t ),  f[2]= 2sin ( t ) */
-   printf ( "  abscissa,  nrc_voltra answer1,  real answer1, " ); 
-   printf ( " nrc_voltra answer2,  real answer2\n" ); 
+   /* exact soln is f[1]= exp ( - t ), f[2]= 2sin ( t ) */
+   printf ( "  abscissa, nrc_voltra answer1, real answer1, " ); 
+   printf ( " nrc_voltra answer2, real answer2\n" ); 
    for ( nn = 1; nn <= N; nn ++ )
       printf ( "%12.6f %12.6f %12.6f %12.6f %12.6f\n", 
          t[nn], f[1][nn], exp ( - t[nn] ), f[2][nn], 2.0*sin ( t[nn] ) ); 

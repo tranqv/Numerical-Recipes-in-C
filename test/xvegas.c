@@ -9,9 +9,9 @@
 #include "nrc.h"
 #include "nrc_util.h"
 
-long idum;       /* for ranno */
+long idum; /* for ranno */
 
-int ndim;        /* for fxn */
+int ndim; /* for fxn */
 sReal xoff; 
 
 sReal fxn ( sReal pt[], sReal wgt )
@@ -35,9 +35,9 @@ int main ( void )
    printf ( "IDUM =\n" ); 
    scanf ( "%ld", &idum ); 
    if ( idum > 0 ) idum = - idum; 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "ENTER NDIM, XOFF, NCALL, ITMAX, NPRN\n" ); 
-      if ( scanf ( "%d %f %d %d %d", &ndim, &xoff, &ncall, &itmax, &nprn ) == EOF ) break; 
+      if ( scanf ( "%d %lf %d %d %d", &ndim, &xoff, &ncall, &itmax, &nprn ) == EOF ) break; 
       avgi = sd = chi2a = 0.0; 
       for ( j = 1; j <= ndim; j ++ ) {
          regn[j]= 0.0; 
@@ -46,12 +46,12 @@ int main ( void )
       init = - 1; 
       nrc_vegas ( regn, ndim, fxn, init, ncall, itmax, nprn, &avgi, &sd, &chi2a ); 
       printf ( "Number of iterations performed: %d\n", itmax ); 
-      printf ( "Integral,  Standard Dev.,  Chi - sq. = %12.6f %12.6f% 12.6f\n", 
+      printf ( "Integral, Standard Dev., Chi - sq. = %12.6f %12.6f% 12.6f\n", 
          avgi, sd, chi2a ); 
       init = 1; 
       nrc_vegas ( regn, ndim, fxn, init, ncall, itmax, nprn, &avgi, &sd, &chi2a ); 
       printf ( "Additional iterations performed: %d \n", itmax ); 
-      printf ( "Integral,  Standard Dev.,  Chi - sq. = %12.6f %12.6f% 12.6f\n", 
+      printf ( "Integral, Standard Dev., Chi - sq. = %12.6f %12.6f% 12.6f\n", 
          avgi, sd, chi2a ); 
    }
    nrc_free_vector ( regn, 1, 20 ); 
