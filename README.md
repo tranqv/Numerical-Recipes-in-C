@@ -44,13 +44,7 @@ Enjoy coding!
 Minor notes:
 -------------
 
-(1) For the command:
-
-    timeout
-
-    To run a command with a time limit. More information: <https://www.gnu.org/software/coreutils/timeout>. 
-
-In case you dont have it, check:
+(1) If you dont have **timeout**, check: 
     https://command-not-found.com/timeout
 
 (2) If you dont have **ar**, check: 
@@ -59,7 +53,7 @@ In case you dont have it, check:
 (3) If you have no **gcc**, check: 
     https://command-not-found.com/gcc
 
-(4) If you want to try with **icc** in , e.g., Debian, then follow this:
+(4) If you want to try with **icc** in , e.g., Debian, then follow these steps:
 
     wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB | gpg --dearmor | sudo tee /usr/share/keyrings/oneapi-archive-keyring.gpg > /dev/null
 
@@ -69,7 +63,7 @@ In case you dont have it, check:
     apt-get upgrade -y 
     apt-get install -y intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic
 
-(5) If you have no **md5sum**, you can check: 
+(5) If you have no **md5sum**, check: 
     https://command-not-found.com/md5sum
     
 (6) You can remove **timeout** and **md5sum** from the script **sh.make.dev** since they are not so essential.
