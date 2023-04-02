@@ -74,4 +74,6 @@ In case you dont have it, check:
 
 (7) If you dont like **timeout** or **md5sum**, use the new script **sh.make**.
 
-(8) ...
+(8) Tests now can run properly. Many things were made to **test/**, e.g., adding input files, correcting formats for the scanf and fscanf routines, etc.
+
+(9) ...
