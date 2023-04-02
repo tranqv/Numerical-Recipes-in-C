@@ -38,7 +38,7 @@ Enjoy coding!
 Minor notes:
 -------------
 
-For the command:
+(1) For the command:
 
     timeout
 
@@ -55,3 +55,5 @@ In case you dont have it, install it by one of the following:
     Arch Linux  pacman -S coreutils 
     CentOS      yum install coreutils 
     OS X        brew install coreutils 
+
+(2) ???
