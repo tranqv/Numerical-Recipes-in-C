@@ -63,25 +63,12 @@
 #  GNU COMPILER:
 #
 
-_use_gfortran ()
-{
-   COMP="gfortran"
-#  DEPS="-Wall -fstack-arrays -static -finit-local-zero -std=legacy"
-   DEPS="-std=legacy"
-   OPTI="-O3"
-#  FLAG="$OPTI $DEPS -I ./ -J $IINC -I $IINC "
-   FLAG="$OPTI $DEPS -I ./ -J $IINC "
-}
-
 _use_gcc ()
 {
    COMP="gcc"
-#  DEPS="-Wall -fstack-arrays -static -finit-local-zero -std=legacy"
-#  DEPS="-Wall -fdefault-real-8"
 #  DEPS="-std=c90"
    DEPS="-ansi"
    OPTI="-O3"
-#  FLAG="$OPTI $DEPS -I ./ -J $IINC "
    FLAG="$OPTI $DEPS -I ./ -I $IINC "
 }
 
@@ -90,22 +77,9 @@ _use_gcc ()
 #  INTEL COMPILER:
 #  
 
-_use_ifort ()
-{
-#  COMP="ifort"
-   COMP="icc_run ifort"
-#  DEPS="-fno-alias -static -zero "
-   DEPS=" "
-   OPTI="-O3"
-   FLAG="$OPTI $DEPS -I./ -module $IINC -I$IINC "
-}
-#
-
 _use_icc ()
 {
-#  COMP="ifort"
-   COMP="icc_run icc"
-#  DEPS="-fno-alias -static -zero "
+   COMP="icc"
 #  DEPS="-ansi"
    DEPS="-diag-disable=10441 -ansi"
    OPTI="-O3"
@@ -117,9 +91,6 @@ _use_icc ()
 
 #
 #  CHOOSE YOUR COMPILER:
-
-#  _use_gfortran 
-#  _use_ifort 
 
 #  _use_icc 
    _use_gcc 
