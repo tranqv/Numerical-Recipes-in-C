@@ -32,9 +32,9 @@ int main ( void )
       else
          printf ( "\nIncluding standard deviations\n" ); 
       printf ( "%12s %9.6f %18s %9.6f \n", 
-         "a  =  ", a, "uncertainty:", siga ); 
+         "a =  ", a, "uncertainty:", siga ); 
       printf ( "%12s %9.6f %18s %9.6f \n", 
-         "b  =  ", b, "uncertainty:", sigb ); 
+         "b =  ", b, "uncertainty:", sigb ); 
       printf ( "%19s %14.6f \n", "chi - squared: ", chi2 ); 
       printf ( "%23s %10.6f \n", "goodness - of - nrc_fit: ", q ); 
    }

@@ -23,9 +23,12 @@ int main ( void )
 
    x = nrc_vector ( 1, NP ); 
    w = nrc_vector ( 1, NP ); 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "Enter N\n" ); 
       if ( scanf ( "%d", &n ) == EOF ) break; 
+
+      if ( n < 0 ) return 1; 
+
       nrc_gaulag ( x, w, n, alf ); 
       printf ( "%3s %10s %14s\n", "#", "x ( i )", "w ( i )" ); 
       for ( i = 1; i <= n; i ++ ) printf ( "%3d %14.6e %14.6e\n", i, x[i], w[i] ); 
@@ -34,8 +37,8 @@ int main ( void )
          checkx += x[i]; 
          checkw += w[i]; 
       }
-      printf ( "\nCheck value: %15.7e  should be: %15.7e\n", checkx, n*( n + alf ) ); 
-      printf ( "\nCheck value: %15.7e  should be: %15.7e\n", checkw, 
+      printf ( "\nCheck value: %15.7e should be: %15.7e\n", checkx, n*( n + alf ) ); 
+      printf ( "\nCheck value: %15.7e should be: %15.7e\n", checkw, 
          exp ( nrc_gammln ( 1.0 + alf ) ) ); 
       /* demonstrate the use of GAULAG for an integral */
       for ( xx = 0.0, i = 1; i <= n; i ++ ) xx += w[i]*func ( x[i] ); 

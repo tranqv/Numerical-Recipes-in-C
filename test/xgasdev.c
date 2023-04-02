@@ -32,9 +32,9 @@ int main ( void )
       dd =( sReal ) dist[j]/NPTS; 
       for ( k = 1; k <= LLEN; k ++ ) words[k]=' '; 
       klim =( int ) ( ISCAL*dd ); 
-      if ( klim > LLEN )  klim = LLEN; 
+      if ( klim > LLEN ) klim = LLEN; 
       for ( k = 1; k <= klim; k ++ ) words[k]='*'; 
-      printf ( "%8.4f %8.4f  ", j/( 0.25*N ), dd ); 
+      printf ( "%8.4f %8.4f ", j/( 0.25*N ), dd ); 
       for ( k = 1; k <= LLEN; k ++ ) printf ( "%c", words[k] ); 
       printf ( "\n" ); 
    }

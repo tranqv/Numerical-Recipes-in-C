@@ -19,10 +19,10 @@ int main ( void )
    int i, ia, j, k, klim, dist[N + 1]; 
    sReal dd; 
 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       for ( j = 0; j <= N; j ++ ) dist[j]= 0; 
       do {
-         printf ( "Select order of Gamma distribution ( n = 1..%d ),  - 1 to end\n", N ); 
+         printf ( "Select order of Gamma distribution ( n = 1..%d ), - 1 to end\n", N ); 
          scanf ( "%d", &ia ); 
       } while ( ia > N ); 
       if ( ia < 0 ) break; 
@@ -30,7 +30,7 @@ int main ( void )
          j =( int ) nrc_gamdev ( ia, &idum ); 
          if ( ( j >= 0 ) && ( j <= N ) ) ++ dist[j]; 
       }
-      printf ( "\ngamma - distribution deviate,  order %2d of %6d points\n", 
+      printf ( "\ngamma - distribution deviate, order %2d of %6d points\n", 
          ia, NPTS ); 
       printf ( "%6s %7s %9s \n", "x", "p ( x )", "graph:" ); 
       for ( j = 0; j < N; j ++ ) {
@@ -39,7 +39,7 @@ int main ( void )
          klim =( int ) ( ISCAL*dd ); 
          if ( klim > LLEN ) klim = LLEN; 
          for ( k = 1; k <= klim; k ++ ) words[k]='*'; 
-         printf ( "%6d %8.4f  ", j, dd ); 
+         printf ( "%6d %8.4f ", j, dd ); 
          for ( k = 1; k <= klim; k ++ ) printf ( "%c", words[k] ); 
          printf ( "\n" ); 
       }

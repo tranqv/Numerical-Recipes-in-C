@@ -24,9 +24,12 @@ int main ( void )
 
    x = nrc_vector ( 1, NP ); 
    w = nrc_vector ( 1, NP ); 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "Enter N\n" ); 
       if ( scanf ( "%d", &n ) == EOF ) break; 
+
+      if ( n < 0 ) return 1; 
+
       nrc_gaujac ( x, w, n, alf, bet ); 
       printf ( "%3s %10s %14s\n", "#", "x ( i )", "w ( i )" ); 
       for ( i = 1; i <= n; i ++ ) printf ( "%3d %14.6e %14.6e\n", i, x[i], w[i] ); 
@@ -35,9 +38,9 @@ int main ( void )
          checkx += x[i]; 
          checkw += w[i]; 
       }
-      printf ( "\nCheck value: %15.7e  should be: %15.7e\n", 
+      printf ( "\nCheck value: %15.7e should be: %15.7e\n", 
          checkx, n*( bet - alf )/( alf + bet + 2*n ) ); 
-      printf ( "\nCheck value: %15.7e  should be: %15.7e\n", 
+      printf ( "\nCheck value: %15.7e should be: %15.7e\n", 
          checkw, exp ( nrc_gammln ( 1.0 + alf )+ nrc_gammln ( 1.0 + bet )-
          nrc_gammln ( 2.0 + alf + bet ) )*pow ( 2.0, alf + bet + 1.0 ) ); 
       /* demonstrate the use of GAUJAC for an integral */

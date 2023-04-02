@@ -21,9 +21,12 @@ int main ( void )
    b = nrc_vector ( 1, NP ); 
    x = nrc_vector ( 1, NP ); 
    w = nrc_vector ( 1, NP ); 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "Enter N:\n" ); 
       if ( scanf ( "%d", &n ) == EOF ) break; 
+
+      if ( n < 0 ) return 1; 
+
       for ( i = 1; i < n; i ++ ) {
          a[i]= 0.0; 
          b[i + 1]= i*0.5; 
@@ -35,7 +38,7 @@ int main ( void )
       printf ( "%3s %10s %14s\n", "#", "x ( i )", "w ( i )" ); 
       for ( i = 1; i <= n; i ++ ) printf ( "%3d %14.6e %14.6e\n", i, x[i], w[i] ); 
       for ( check = 0.0, i = 1; i <= n; i ++ ) check += w[i]; 
-      printf ( "\nCheck value: %15.7e  should be: %15.7e\n", check, SQRTPI ); 
+      printf ( "\nCheck value: %15.7e should be: %15.7e\n", check, SQRTPI ); 
    }
    nrc_free_vector ( w, 1, NP ); 
    nrc_free_vector ( x, 1, NP ); 

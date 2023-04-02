@@ -87,11 +87,11 @@ int main ( void )
          }
    sum2 = sqrt ( sum2/tot ); 
    sum = sum/tot; 
-   printf ( "( r.m.s. ) value,  ( max, ave ) discrepancy = %12.7f %12.7f %12.7f\n", 
+   printf ( "( r.m.s. ) value, ( max, ave ) discrepancy = %12.7f %12.7f %12.7f\n", 
       sum2, smax, sum ); 
    /* now check the inverse transforms */
    SWAP ( dim[1], dim[3] ); 
-   /* This step swap step is conceptually a reversal,  but for
+   /* This step swap step is conceptually a reversal, but for
    three dimensions a swap accomplishes that. */
    FSWAP ( file[1], file[3] )
    FSWAP ( file[4], file[2] )
@@ -119,9 +119,9 @@ int main ( void )
    }
    sum = sum/tot; 
    sum1 = sqrt ( sum1/tot ); 
-   printf ( "( r.m.s. ) value,  ( max, ave ) discrepancy = %12.7f %12.7f %12.7f\n", 
+   printf ( "( r.m.s. ) value, ( max, ave ) discrepancy = %12.7f %12.7f %12.7f\n", 
       sum1, smax, sum ); 
-   printf ( "ratio of r.m.s. values,  expected ratio = %12.6f %12.6f\n", 
+   printf ( "ratio of r.m.s. values, expected ratio = %12.6f %12.6f\n", 
       sum1/sum2, sqrt ( tot ) ); 
    for ( j = 1; j <= 4; j ++ )
       if ( fclose ( file[j] ) == EOF ) nrc_error ( "Couldn't close temporary file" ); 

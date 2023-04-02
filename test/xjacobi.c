@@ -86,7 +86,7 @@ int main ( void )
                v[l][j], r[l], r[l]/v[l][j] ); 
       }
       printf ( "press RETURN to continue...\n" ); 
-      ( void ) getchar (  ); 
+      ( void ) getchar ( ); 
       nrc_free_convert_matrix ( e, 1, num[i], 1, num[i] ); 
    }
    nrc_free_matrix ( v, 1, NP, 1, NP ); 

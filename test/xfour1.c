@@ -23,7 +23,7 @@ void prntft ( sReal data[], unsigned long nn )
          data[2*nn + 2 - n], data[2*nn + 3 - n] ); 
    }
    printf ( " press return to continue ...\n" ); 
-   ( void ) getchar (  ); 
+   ( void ) getchar ( ); 
    return; 
 }
 
@@ -76,7 +76,7 @@ int main ( void )
    isign = 1; 
    nrc_four1 ( data, NN, isign ); 
    prntft ( data, NN ); 
-   /* transform,  inverse - transform test */
+   /* transform, inverse - transform test */
    for ( i = 1; i < NN2; i += 2 ) {
       data[i]= 1.0/( SQR ( 0.5*( i - NN - 1.0 )/NN )+ 1.0 ); 
       dcmp[i]= data[i]; 

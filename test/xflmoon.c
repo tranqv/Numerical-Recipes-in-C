@@ -18,7 +18,7 @@ int main ( void )
       "full moon", "last quarter"}; 
 
    printf ( "Date of the next few phases of the moon\n" ); 
-   printf ( "Enter today\'s date ( e.g. 12 15 1992 )  :  \n" ); 
+   printf ( "Enter today\'s date ( e.g. 12 15 1992 ) :  \n" ); 
    scanf ( "%d %d %d", &im, &id, &iy ); 
    /* Approximate number of full moons since january 1900 */
    n =( int )( 12.37*( iy - 1900 +( ( im - 0.5 )/12.0 ) ) ); 
@@ -43,7 +43,7 @@ int main ( void )
       i2 =( int ) ( secs/60.0 ); 
       i3 =( int ) ( secs - 60*i2 + 0.5 ); 
       nrc_caldat ( j2, &im, &id, &iy ); 
-      printf ( "%5d %3d %5d %7d:%2d:%2d      %s\n", 
+      printf ( "%5d %3d %5d %7d:%2d:%2d %s\n", 
          im, id, iy, i1, i2, i3, phase[nph] ); 
       if ( nph == 3 ) {
          nph = 0; 

@@ -31,11 +31,11 @@ int main ( void )
    f = nrc_vector ( 1, N ); 
    w = nrc_vector ( 1, N ); 
    nrc_fred2 ( N, a, b, t, f, w, g, ak ); 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "Enter T between 0 and PI/2\n" ); 
-      if ( scanf ( "%f", &x ) == EOF ) break; 
+      if ( scanf ( "%lf", &x ) == EOF ) break; 
       ans = nrc_fredin ( x, N, a, b, t, f, w, g, ak ); 
-      printf ( "T,  Calculated answer,  True answer\n" ); 
+      printf ( "T, Calculated answer, True answer\n" ); 
       printf ( "%10.6f %10.6f %10.6f\n", x, ans, sqrt ( x ) ); 
    }
    nrc_free_vector ( w, 1, N ); 

@@ -18,7 +18,7 @@ int main ( void )
 
    x1 = nrc_vector ( 1, NMAX ); 
    y1 = nrc_vector ( 1, NMAX ); 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "How many points?\n" ); 
       if ( scanf ( "%lu", &n1 ) == EOF ) break; 
       if ( n1 > NMAX ) {
@@ -26,8 +26,8 @@ int main ( void )
          continue; 
       }
       printf ( "What factor nonlinearity ( 0 to 1 )?\n" ); 
-      for ( ; ;  ) {
-            if ( scanf ( "%f", &factor ) == EOF ) {
+      for ( ; ; ) {
+            if ( scanf ( "%lf", &factor ) == EOF ) {
                   factor = - 1.0; 
                   break; 
             }
@@ -55,7 +55,7 @@ int main ( void )
             y1[j]= 2.0*v - 1.0; 
          }
          nrc_ks2d1s ( x1, y1, n1, nrc_quadvl, &d, &prob ); 
-         printf ( "d,  prob = %12.6f %12.6f\n", d, prob ); 
+         printf ( "d, prob = %12.6f %12.6f\n", d, prob ); 
       }
    }
    nrc_free_vector ( y1, 1, NMAX ); 

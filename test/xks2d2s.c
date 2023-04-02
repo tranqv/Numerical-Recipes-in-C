@@ -21,7 +21,7 @@ int main ( void )
    y1 = nrc_vector ( 1, NMAX ); 
    x2 = nrc_vector ( 1, NMAX ); 
    y2 = nrc_vector ( 1, NMAX ); 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "Input N1, N2\n" ); 
       if ( scanf ( "%lu %lu", &n1, &n2 ) == EOF ) break; 
       if ( n1 > NMAX ) {
@@ -33,7 +33,7 @@ int main ( void )
          continue; 
       }
       printf ( "What shrinkage?\n" ); 
-      if ( scanf ( "%f", &shrink ) == EOF ) break; 
+      if ( scanf ( "%lf", &shrink ) == EOF ) break; 
       printf ( "How many trials?\n" ); 
       if ( scanf ( "%lu", &ntrial ) == EOF ) break; 
       if ( ntrial > NMAX ) {
@@ -55,7 +55,7 @@ int main ( void )
             y2[j]= u - v; 
          }
          nrc_ks2d2s ( x1, y1, n1, x2, y2, n2, &d, &prob ); 
-         printf ( "d,  prob = %12.6f %12.6f\n", d, prob ); 
+         printf ( "d, prob = %12.6f %12.6f\n", d, prob ); 
       }
    }
    nrc_free_vector ( y2, 1, NMAX ); 

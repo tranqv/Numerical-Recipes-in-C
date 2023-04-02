@@ -27,9 +27,9 @@ int main ( void )
    a = nrc_cmplx ( 0.5, 0.0 ); 
    b = nrc_cmplx ( 1.0, 0.0 ); 
    c = nrc_cmplx ( 1.5, 0.0 ); 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "INPUT X, Y OF COMPLEX ARGUMENT:\n" ); 
-      if ( scanf ( "%f %f", &x, &y ) == EOF ) break; 
+      if ( scanf ( "%lf %lf", &x, &y ) == EOF ) break; 
       z = nrc_cmplx ( x, y ); 
       q1 = nrc_hypgeo ( a, b, c, nrc_cmul ( z, z ) ); 
       q2 = nrc_rcmul ( 0.5, nrc_cdiv ( Clog ( nrc_cdiv ( nrc_cadd ( b, z ), nrc_csub ( b, z ) ) ), z ) ); 

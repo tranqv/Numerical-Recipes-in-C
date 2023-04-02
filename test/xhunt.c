@@ -20,7 +20,7 @@ int main ( void )
    /* create array to be searched */
    for ( i = 1; i <= N; i ++ )
       xx[i]= exp ( i/20.0 )- 74.0; 
-   printf ( "\n  result of:   j = 0 indicates x too small\n" ); 
+   printf ( "\n result of:   j = 0 indicates x too small\n" ); 
    printf ( "%14s j = 100 indicates x too large", " " ); 
    printf ( "\n%12s %8s %4s %11s %13s \n", 
       "nrc_locate:", "guess", "j", "xx ( j )", "xx ( j + 1 )" ); 

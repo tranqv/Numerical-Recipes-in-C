@@ -76,7 +76,7 @@ int main ( void )
       }
       printf ( "***********************************\n" ); 
       printf ( "press RETURN for next problem:\n" ); 
-      ( void ) getchar (  ); 
+      ( void ) getchar ( ); 
    }
    fclose ( fp ); 
    nrc_free_matrix ( t, 1, NP, 1, MP ); 

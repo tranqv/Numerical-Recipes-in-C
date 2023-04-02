@@ -1,7 +1,7 @@
 
 #include "nrc_types.h"
 
-/* Driver for routines nrc_hufmak,  nrc_hufenc,  nrc_hufdec */
+/* Driver for routines nrc_hufmak, nrc_hufenc, nrc_hufdec */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -40,11 +40,11 @@ int main ( void )
    nch = 96; 
    /* here is the initialization that constructs the code */
    nrc_hufmak ( nfreq, nch, &ilong, &nlong, &hcode ); 
-   printf ( "ind char  nfreq  ncod  icod\n" ); 
+   printf ( "ind char nfreq ncod icod\n" ); 
    for ( j = 1; j <= nch; j ++ )
       if ( nfreq[j] ) printf ( "%3lu %c %6lu %6lu %6lu\n", 
          j, ( char )( j + 31 ), nfreq[j], hcode.ncod[j], hcode.icod[j] ); 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       /* now ready to prompt for lines to encode */
       printf ( "Enter a line:\n" ); 
       if ( gets ( ( char * )&mess[1] ) == NULL ) break; 
@@ -57,7 +57,7 @@ int main ( void )
       nh =( nb >> 3 )+ 1; 
       /* message termination ( encode a single long character ) */
       nrc_hufenc ( ilong, &code, &lcode, &nb, &hcode ); 
-      /* here we decode the message,  hopefully to get the original back */
+      /* here we decode the message, hopefully to get the original back */
       nb = 0; 
       for ( j = 1; j <= MAXLINE; j ++ ) {
          nrc_hufdec ( &i, code, nh, &nb, &hcode ); 

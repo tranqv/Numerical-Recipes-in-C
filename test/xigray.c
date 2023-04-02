@@ -11,12 +11,12 @@ int main ( void )
 {
    unsigned long jp, n, ng, nmax, nmin, nni, nxor; 
 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "input nmin, nmax: \n" ); 
       if ( scanf ( "%lu %lu", &nmin, &nmax ) == EOF ) break; 
       jp =( nmax - nmin )/11; 
       if ( jp < 1 ) jp = 1; 
-      printf ( "n,  Gray[n],  Gray ( Gray[n] ),  Gray[n] ^ Gray[n + 1]\n" ); 
+      printf ( "n, Gray[n], Gray ( Gray[n] ), Gray[n] ^ Gray[n + 1]\n" ); 
       for ( n = nmin; n <= nmax; n ++ ) {
          ng = nrc_igray ( n, 1 ); 
          nni = nrc_igray ( ng, - 1 ); 

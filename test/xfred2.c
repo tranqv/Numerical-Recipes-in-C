@@ -33,7 +33,7 @@ int main ( void )
    w = nrc_vector ( 1, N ); 
    nrc_fred2 ( N, a, b, t, f, w, g, ak ); 
    /* Compare with exact solution */
-   printf ( "Abscissa,  Calc soln,  True soln\n" ); 
+   printf ( "Abscissa, Calc soln, True soln\n" ); 
    for ( i = 1; i <= N; i ++ ) printf ( "%10.6f %10.6f %10.6f\n", t[i], f[i], sqrt ( t[i] ) ); 
    nrc_free_vector ( w, 1, N ); 
    nrc_free_vector ( f, 1, N ); 

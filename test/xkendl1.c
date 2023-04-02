@@ -19,7 +19,7 @@ int main ( void )
 
    data1 = nrc_vector ( 1, NDAT ); 
    data2 = nrc_vector ( 1, NDAT ); 
-   /* Look for correlations in RAN0,  RAN1,  RAN2,  RAN3 and RAN4 */
+   /* Look for correlations in RAN0, RAN1, RAN2, RAN3 and RAN4 */
    printf ( "\nPair correlations of RAN0 ... RAN4\n\n" ); 
    printf ( "%9s %17s %16s %18s\n", 
       "Program", "Kendall tau", "Std. Dev.", "Probability" ); 
