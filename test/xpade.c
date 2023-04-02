@@ -24,7 +24,7 @@ int main ( void )
 
    c = nrc_dvector ( 0, NMAX ); 
    cc = nrc_dvector ( 0, NMAX ); 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "Enter n for PADE routine:\n" ); 
       if ( scanf ( "%d", &n ) == EOF ) break; 
       fac = 1; 
@@ -35,7 +35,7 @@ int main ( void )
       }
       nrc_pade ( c, n, &nrc_resid ); 
       printf ( "Norm of residual nrc_vector = %16.8e\n", nrc_resid ); 
-      printf ( "point,  func. value,  nrc_pade series,  power series\n" ); 
+      printf ( "point, func. value, nrc_pade series, power series\n" ); 
       for ( j = 1; j <= 21; j ++ ) {
          x =( j - 1 )*0.25; 
          for ( b = 0.0, k = 2*n + 1; k >= 1; k -- ) {

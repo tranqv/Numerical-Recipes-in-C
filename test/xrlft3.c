@@ -10,8 +10,8 @@
 #include "nrc_util.h"
 #define IPRNT 20
 
-static unsigned long compare ( char *string,  sReal ***arr1,  sReal ***arr2, 
-   unsigned long len1,  unsigned long len2,  unsigned long len3,  sReal eps )
+static unsigned long compare ( char *string, sReal ***arr1, sReal ***arr2, 
+   unsigned long len1, unsigned long len2, unsigned long len3, sReal eps )
 {
    unsigned long err = 0, i1, i2, i3; 
    sReal a1, a2; 

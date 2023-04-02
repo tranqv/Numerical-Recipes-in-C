@@ -40,7 +40,7 @@ int main ( void )
       printf ( "\n" ); 
    }
    printf ( "press return to continue...\n" ); 
-   ( void ) getchar (  ); 
+   ( void ) getchar ( ); 
    printf ( "array sorted according to nrc_rank table:\n" ); 
    for ( i = 0; i <= 9; i ++ ) {
       for ( j = 1; j <= 10; j ++ ) {

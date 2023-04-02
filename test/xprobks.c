@@ -30,7 +30,7 @@ int main ( void )
             txt[j]=' '; 
       }
       txt[ISCAL]='\0'; 
-      printf ( "%8.6f %10.6f       %s\n", alam, aval, txt ); 
+      printf ( "%8.6f %10.6f %s\n", alam, aval, txt ); 
    }
    return 0; 
 }

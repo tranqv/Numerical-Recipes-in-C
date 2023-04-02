@@ -22,13 +22,13 @@ int main ( void )
    dReal a, b, *cof, dev, eee, nrc_fit, xs; 
 
    cof = nrc_dvector ( 0, NMAX ); 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "enter a, b, mm, kk\n" ); 
       if ( scanf ( "%lf %lf %d %d", &a, &b, &mm, &kk ) == EOF ) break; 
       nrc_ratlsq ( fn, a, b, mm, kk, cof, &dev ); 
       for ( j = 0; j <= mm + kk; j ++ ) printf ( "cof ( %3d )=%27.15e\n", j, cof[j] ); 
       printf ( "maximum absolute deviation = %12.6f\n", dev ); 
-      printf ( "    x        error        exact\n" ); 
+      printf ( "    x error exact\n" ); 
       printf ( "--------- ------------ ---------\n" ); 
       for ( j = 1; j <= 50; j ++ ) {
          xs = a +( b - a )*( j - 1.0 )/49.0; 

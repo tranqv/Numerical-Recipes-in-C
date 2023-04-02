@@ -17,8 +17,8 @@ int main ( void )
    sReal dy, f, x, y, *xa, *ya; 
 
    printf ( "generation of interpolation tables\n" ); 
-   printf ( " ... sin ( x )    0 < x < PI\n" ); 
-   printf ( " ... exp ( x )    0 < x < 1 \n" ); 
+   printf ( " ... sin ( x ) 0 < x < PI\n" ); 
+   printf ( " ... exp ( x ) 0 < x < 1 \n" ); 
    printf ( "how many entries go in these tables?\n" ); 
    if ( scanf ( "%d", &n ) == EOF ) return 1; 
    xa = nrc_vector ( 1, n ); 
@@ -50,12 +50,12 @@ int main ( void )
             f = exp ( x ); 
          }
          nrc_polint ( xa, ya, n, x, &y, &dy ); 
-         printf ( "%12.6f %12.6f %12.6f %4s %11f\n", 
+         printf ( "%12.6f %12.6f %12.6f %4s %13.6e\n", 
             x, f, y, " ", dy ); 
       }
       printf ( "\n***********************************\n" ); 
       printf ( "press RETURN\n" ); 
-      ( void ) getchar (  ); 
+      ( void ) getchar ( ); 
    }
    nrc_free_vector ( ya, 1, n ); 
    nrc_free_vector ( xa, 1, n ); 

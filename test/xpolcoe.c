@@ -55,7 +55,7 @@ int main ( void )
       }
       printf ( "\n************************************\n" ); 
       printf ( "press RETURN\n" ); 
-      ( void ) getchar (  ); 
+      ( void ) getchar ( ); 
    }
    nrc_free_vector ( ya, 0, NP ); 
    nrc_free_vector ( xa, 0, NP ); 

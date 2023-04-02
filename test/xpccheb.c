@@ -28,7 +28,7 @@ int main ( void )
    fac = 1.0; 
    e[0]= ee[0]= 0.0; 
    for ( j = 0; j < NMANY; j ++ ) {
-      i = j & 3;     /* tricky way to perform j % 4 */
+      i = j & 3; /* tricky way to perform j % 4 */
       if ( i == 1 || i == 3 ) e[j]= 0.0; 
       else if ( i == 0 ) e[j]= 1.0/fac; 
       else e[j] = - 1.0/fac; 
@@ -36,19 +36,19 @@ int main ( void )
       ee[j]= e[j]; 
    }
    nrc_pcshft ( ( - 2.0 - b - a )/( b - a ), ( 2.0 - b - a )/( b - a ), e, NMANY ); 
-   /* i.e.,  inverse of nrc_pcshft ( a, b, ... ) which we do below */
+   /* i.e., inverse of nrc_pcshft ( a, b, ... ) which we do below */
    nrc_pccheb ( e, c, NMANY ); 
-   printf ( "Index,  series,  Chebyshev coefficients\n" ); 
+   printf ( "Index, series, Chebyshev coefficients\n" ); 
    for ( j = 0; j < NMANY; j += 2 )
       printf ( "%3d %15.6e %15.6e\n", j, e[j], c[j] ); 
    nrc_chebpc ( c, d, NFEW ); 
    nrc_pcshft ( a, b, d, NFEW ); 
-   printf ( "Index,  new series,  coefficient ratios\n" ); 
+   printf ( "Index, new series, coefficient ratios\n" ); 
    for ( j = 0; j < NFEW; j += 2 ) {
       printf ( "%3d %15.6e %15.6e\n", 
          j, d[j], d[j]/( ee[j]+ 1.0e-30 ) ); 
    }
-   printf ( "      Point tested,  function value,  error power series,  error Cheb.\n" ); 
+   printf ( "      Point tested, function value, error power series, error Cheb.\n" ); 
    for ( i = 0; i <= NCHECK; i ++ ) {
       py = a + i*( b - a )/( sReal ) NCHECK; 
       py2 = py*py; 

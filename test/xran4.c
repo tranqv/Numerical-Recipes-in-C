@@ -18,9 +18,9 @@ int main ( void )
    for ( i = 1; i <= 4; i ++ ) random[i]= nrc_ran4 ( &idum[i] ); 
    printf ( "nrc_ran4 gets values: " ); 
    for ( i = 1; i <= 4; i ++ ) printf ( "%15.6f", random[i] ); 
-   printf ( "\n    IEEE answers: " ); 
+   printf ( "\n IEEE answers: " ); 
    for ( i = 1; i <= 4; i ++ ) printf ( "%15s", ansiee[i] ); 
-   printf ( "\n     VAX answers: " ); 
+   printf ( "\n VAX answers: " ); 
    for ( i = 1; i <= 4; i ++ ) printf ( "%15s", ansvax[i] ); 
    printf ( "\n" ); 
    return 0; 

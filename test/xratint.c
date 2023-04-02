@@ -34,7 +34,7 @@ int main ( void )
       xx = 0.2*i; 
       nrc_ratint ( x, y, NPT, xx, &yy, &dyy ); 
       yexp = f ( xx, EPS ); 
-      printf ( "%6.2f %12.6f    %11f %13.6f\n", xx, yy, dyy, yexp ); 
+      printf ( "%6.2f %12.6f %13.6e %13.6f\n", xx, yy, dyy, yexp ); 
    }
    nrc_free_vector ( y, 1, NPT ); 
    nrc_free_vector ( x, 1, NPT ); 

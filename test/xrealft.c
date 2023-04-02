@@ -21,9 +21,9 @@ int main ( void )
 
    data = nrc_vector ( 1, NP ); 
    size = nrc_vector ( 1, NP/2 + 1 ); 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "Period of sinusoid in channels ( 2 -%2d )\n", NP ); 
-      scanf ( "%f", &per ); 
+      scanf ( "%lf", &per ); 
       if ( per <= 0.0 ) break; 
       for ( i = 1; i <= NP; i ++ )
          data[i]= cos ( 2.0*PI*( i - 1 )/per ); 
@@ -45,7 +45,7 @@ int main ( void )
          printf ( "\n" ); 
       }
       printf ( "press RETURN to continue ...\n" ); 
-      ( void ) getchar (  ); 
+      ( void ) getchar ( ); 
       nrc_realft ( data, NP, - 1 ); 
       big = - 1.0e10; 
       small = 1.0e10; 

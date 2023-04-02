@@ -23,7 +23,7 @@ int main ( void )
    sReal c[NVAL], d[NVAL]; 
 
    nrc_chebft ( a, b, c, NVAL, func ); 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "\nHow many terms in Chebyshev evaluation?\n" ); 
       printf ( "Enter n between 6 and %2d. ( n = 0 to end ).\n", NVAL ); 
       scanf ( "%d", &mval ); 

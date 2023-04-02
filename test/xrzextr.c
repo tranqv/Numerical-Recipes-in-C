@@ -11,7 +11,7 @@
 #define NV 4
 #define IMAXX 10
 
-sReal **d, *x;    /* defining declaration */
+sReal **d, *x; /* defining declaration */
 
 int main ( void )
 {

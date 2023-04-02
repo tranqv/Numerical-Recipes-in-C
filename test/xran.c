@@ -1,7 +1,7 @@
 
 #include "nrc_types.h"
 
-/* Driver for routines nrc_ran0,  nrc_ran1,  nrc_ran2,  nrc_ran3 */
+/* Driver for routines nrc_ran0, nrc_ran1, nrc_ran2, nrc_ran3 */
 
 #include <stdio.h>
 #include <math.h>
@@ -26,8 +26,8 @@ void integ ( sReal ( *func )( long * ) )
 
    /* Calculates pi statistically using volume of unit n - sphere */
    for ( i = 1; i <= 3; i ++ ) iy[i]= 0; 
-   printf ( "volume of unit n - sphere,  n = 2,  3,  4\n" ); 
-   printf ( "# points      pi        ( 4/3 )*pi    ( 1/2 )*pi^2\n\n" ); 
+   printf ( "volume of unit n - sphere, n = 2, 3, 4\n" ); 
+   printf ( "# points pi ( 4/3 )*pi ( 1/2 )*pi^2\n\n" ); 
    for ( j = 1; j <= 15; j ++ ) {
       for ( k = twotoj[j - 1]; k >= 0; k -- ) {
          x1 =( *func )( &idum ); 
@@ -50,10 +50,10 @@ void integ ( sReal ( *func )( long * ) )
 
 int main ( void )
 {
-   printf ( "\nTesting nrc_ran0:\n" );  integ ( nrc_ran0 ); 
-   printf ( "\nTesting nrc_ran1:\n" );  integ ( nrc_ran1 ); 
-   printf ( "\nTesting nrc_ran2:\n" );  integ ( nrc_ran2 ); 
-   printf ( "\nTesting nrc_ran3:\n" );  integ ( nrc_ran3 ); 
+   printf ( "\nTesting nrc_ran0:\n" ); integ ( nrc_ran0 ); 
+   printf ( "\nTesting nrc_ran1:\n" ); integ ( nrc_ran1 ); 
+   printf ( "\nTesting nrc_ran2:\n" ); integ ( nrc_ran2 ); 
+   printf ( "\nTesting nrc_ran3:\n" ); integ ( nrc_ran3 ); 
    return 0; 
 }
 #undef NRANSI

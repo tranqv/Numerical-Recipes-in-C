@@ -19,19 +19,19 @@ int main ( void )
    int i, j, k, klim, dist[N + 1]; 
    sReal xm, dd; 
 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       for ( j = 0; j <= N; j ++ ) dist[j]= 0; 
       do {
          printf ( "Mean of Poisson distribution ( 0.0 < x <%d.0 ) ", N ); 
          printf ( "- Negative to end:\n" ); 
-         scanf ( "%f", &xm ); 
+         scanf ( "%lf", &xm ); 
       } while ( xm > N ); 
       if ( xm < 0.0 ) break; 
       for ( i = 1; i <= NPTS; i ++ ) {
          j =( int ) ( 0.5 + nrc_poidev ( xm, &idum ) ); 
          if ( ( j >= 0 ) && ( j <= N ) ) ++ dist[j]; 
       }
-      printf ( "Poisson - distributed deviate,  mean %5.2f of %6d points\n", 
+      printf ( "Poisson - distributed deviate, mean %5.2f of %6d points\n", 
          xm, NPTS ); 
       printf ( "%5s %8s %10s\n", "x", "p ( x )", "graph:" ); 
       for ( j = 0; j <= N; j ++ ) {
@@ -41,7 +41,7 @@ int main ( void )
          if ( klim > LLEN ) klim = LLEN; 
          for ( k = 1; k <= klim; k ++ ) txt[k]='*'; 
          txt[LLEN]='\0'; 
-         printf ( "%6d %8.4f   %s\n", j, dd, txt ); 
+         printf ( "%6d %8.4f %s\n", j, dd, txt ); 
       }
    }
    return 0; 

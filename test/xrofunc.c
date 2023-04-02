@@ -11,8 +11,8 @@
 #define SPREAD 0.05
 #define NDATA 100
 
-int ndatat;  /* defining declaration */
-sReal *xt, *yt, aa, abdevt;     /* defining declaration */
+int ndatat; /* defining declaration */
+sReal *xt, *yt, aa, abdevt; /* defining declaration */
 
 int main ( void )
 {
