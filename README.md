@@ -27,11 +27,11 @@ For example, to run everything, you can do like this:
 
     bash sh.make.dev  all 
 
-The latter command compiles all the codes in src/, prepares the header files, creates the library libNRinC.a, compiles all programs in test/ and excecutes them right away. 
+The latter command compiles all the codes in **src/**, prepares the header files, i.e., **src/\*.h**, creates the library **libNRinC.a**, compiles all programs in **test/** and excecutes them right away. 
 
-You can see how to compile and link your program to the library. You can change everything inside the script sh.make.dev.
+You can see how to compile and link your program to the library. You can change everything inside the script **sh.make.dev**.
 
-One more thing: all real numbers are compiled with double precision (i.e., 8 bytes, double) instead of single precision (4 bytes, float) as in the original version. Make your own setting in src/nrc_types.h.
+One more thing: all real numbers are compiled with double precision (i.e., 8 bytes, double) instead of single precision (4 bytes, float) as in the original version. Make your own setting in **src/nrc_types.h**.
 
 Enjoy coding!
 
