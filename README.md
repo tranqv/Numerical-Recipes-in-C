@@ -34,3 +34,22 @@ You can see how to compile and link your program to the library. You can change 
 One more thing: all real numbers are compiled with double precision (i.e., 8 bytes, double) instead of single precision (4 bytes, float) as in the original version. Make your own setting in src/nrc_types.h.
 
 Enjoy coding!
+-------------
+
+For the command:
+
+    timeout
+
+    Run a command with a time limit. More information: <https://www.gnu.org/software/coreutils/timeout>. 
+
+Read from 
+
+    https://command-not-found.com/timeout
+
+In case you dont have it, install it by one of the following:
+
+    Debian      apt-get install coreutils 
+    Ubuntu      apt-get install coreutils 
+    Arch Linux  pacman -S coreutils 
+    CentOS      yum install coreutils 
+    OS X        brew install coreutils 
