@@ -15,7 +15,7 @@ Many things have been changed, e.g., all the names of subroutine. This version o
 
 It works in Linux. 
 
-You need a C compiler, e.g., **gcc** or **icc**. You also need the **ar** and **timeout** commands, where **timeout** is only for running tests.
+You need a C compiler, e.g., **gcc** or **icc**. You also need the **ar**, **timeout**, and **md5sum** commands, where **timeout** is only for running tests, and **md5sum** is for calculating MD5 hashes in the script **sh.make.dev**.
 
 In Linux terminal, perform the command:
 
@@ -62,5 +62,10 @@ In case you dont have it, check:
     apt-get update 
     apt-get upgrade -y 
     apt-get install -y intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic
+
+(3) If you have no **md5sum**, check: 
+    https://command-not-found.com/md5sum
     
-(5) ...
+(6) You can remove **timeout** and **md5sum** from the script **sh.make.dev** since they are not so essential.
+
+(7) ...
