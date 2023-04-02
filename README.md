@@ -15,7 +15,7 @@ Many things have been changed, e.g., all the names of subroutine. This version o
 
 It works in Linux. 
 
-You need a C compiler, e.g., gcc or icc. You also need the ar and timeout commands, where timeout is only for running tests.
+You need a C compiler, e.g., **gcc** or **icc**. You also need the **ar** and **timeout** commands, where **timeout** is only for running tests.
 
 In Linux terminal, perform the command:
 
