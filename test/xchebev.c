@@ -23,7 +23,7 @@ int main ( void )
 
    nrc_chebft ( a, b, c, NVAL, func ); 
    /* Test Chebyshev evaluation routine */
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "\nHow many terms in Chebyshev evaluation?\n" ); 
       printf ( "Enter n between 6 and %2d. ( n = 0 to end ).\n", NVAL ); 
       scanf ( "%d", &mval ); 

@@ -42,7 +42,7 @@ int main ( void )
    printf ( "%s %14s %3d\n", "Total tries:", " ", ntot ); 
    printf ( "%s %16s %3d\n", "Bad tries:", " ", nbad ); 
    printf ( "%s %11s %4.2f\n", "Fraction good:", " ", ( ( sReal )( ntot - nbad ) )/ntot ); 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "enter string terminated by x:\n" ); 
       if ( gets ( lin ) == NULL ) break; 
       for ( j = 0; j < MAXLINE; j ++ )

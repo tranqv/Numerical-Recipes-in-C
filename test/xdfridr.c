@@ -18,8 +18,8 @@ int main ( void )
 {
    sReal x, h, dx, err; 
 
-   printf ( "input x,  h\n" ); 
-   while ( scanf ( "%f %f", &x, &h ) != EOF ) {
+   printf ( "input x, h\n" ); 
+   while ( scanf ( "%lf %lf", &x, &h ) != EOF ) {
       dx = nrc_dfridr ( func, x, h, &err ); 
       printf ( "nrc_dfridr =%12.6f %12.6f %12.6f\n", dx, 1.0/SQR ( cos ( x ) ), err ); 
    }

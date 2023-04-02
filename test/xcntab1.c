@@ -46,10 +46,10 @@ int main ( void )
       printf ( "\n" ); 
    }
    nrc_cntab1 ( nmbr, NDAT, NMON, &chisq, &df, &prob, &cramrv, &ccc ); 
-   printf ( "\n%15s chi - squared       %20.2f\n", " ", chisq ); 
+   printf ( "\n%15s chi - squared %20.2f\n", " ", chisq ); 
    printf ( "%15s degrees of freedom%20.2f\n", " ", df ); 
-   printf ( "%15s probability       %20.4f\n", " ", prob ); 
-   printf ( "%15s cramer - v          %20.4f\n", " ", cramrv ); 
+   printf ( "%15s probability %20.4f\n", " ", prob ); 
+   printf ( "%15s cramer - v %20.4f\n", " ", cramrv ); 
    printf ( "%15s contingency coeff.%20.4f\n", " ", ccc ); 
    nrc_free_imatrix ( nmbr, 1, NDAT, 1, NMON ); 
    return 0; 

@@ -1,4 +1,5 @@
 
+#include "nrc_types.h"
 
 /* Driver for routine nrc_airy */
 
@@ -6,8 +7,8 @@
 #include <stdlib.h>
 #include <string.h>
 #define NRANSI
-
 #include "nrc.h"
+#include "nrc_util.h"
 
 #define MAXSTR 80
 

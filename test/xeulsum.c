@@ -18,7 +18,7 @@ int main ( void )
 
    wksp = nrc_vector ( 1, NVAL ); 
    /* evaluate ln ( 1 + x )= x - x^2/2 + x^3/3 - x^4/4 ... for - 1 < x < 1 */
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "\nHow many terms in polynomial?\n" ); 
       printf ( "Enter n between 1 and %2d. ( n = 0 to end ) ", NVAL ); 
       scanf ( "%d", &mval ); 

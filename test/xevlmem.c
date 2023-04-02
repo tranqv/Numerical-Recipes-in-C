@@ -27,7 +27,7 @@ int main ( void )
    fclose ( fp ); 
    nrc_memcof ( data, N, M, &pm, cof ); 
    printf ( "Power spectum estimate of data in spctrl.dat\n" ); 
-   printf ( "     f*delta      power\n" ); 
+   printf ( "     f*delta power\n" ); 
    for ( fdt = 0.0; fdt <= 0.5; fdt += 0.5/NFDT )
       printf ( "%12.6f %12.6f\n", fdt, nrc_evlmem ( fdt, cof, M, pm ) ); 
    nrc_free_vector ( data, 1, N ); 

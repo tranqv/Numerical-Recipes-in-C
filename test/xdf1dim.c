@@ -10,11 +10,11 @@
 
 #define NDIM 3
 
-int ncom;    /* defining declarations */
+int ncom; /* defining declarations */
 sReal *pcom, *xicom; 
-void ( *nrdfun )( sReal [],  sReal [] ); 
+void ( *nrdfun )( sReal [], sReal [] ); 
 
-void dfunc ( sReal x[],  sReal df[] )
+void dfunc ( sReal x[], sReal df[] )
 {
    int i; 
 
@@ -30,8 +30,14 @@ int main ( void )
    printf ( "\nEnter nrc_vector direction along which to\n" ); 
    printf ( "plot the function. Minimum is in the\n" ); 
    printf ( "direction 1.0 1.0 1.0 - enter x y z:\n\n" ); 
+
+/* Terminate it */
+   printf ( "\n\nSKIP!\n\n" ) ; 
+   return 1 ; 
+
+
    pcom[1]= pcom[2]= pcom[3]= 0.0; 
-   scanf ( "%f %f %f", &xicom[1], &xicom[2], &xicom[3] ); 
+   scanf ( "%lf %lf %lf", &xicom[1], &xicom[2], &xicom[3] ); 
    nrc_scrsho ( nrc_df1dim ); 
    nrc_free_vector ( xicom, 1, ncom ); 
    nrc_free_vector ( pcom, 1, ncom ); 

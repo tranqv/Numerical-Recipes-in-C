@@ -40,10 +40,13 @@ int main ( void )
    /* here is the initialization that constructs the code */
    nrc_arcmak ( nfreq, ( int ) nch, ( int ) nrad, &acode ); 
    /* now ready to prompt for lines to encode */
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "Enter a line:\n" ); 
       if ( gets ( ( char * )&mess[1] ) == NULL ) break; 
       n = strlen ( ( char * )&mess[1] ); 
+
+      if ( n == 0 ) return 1 ; 
+
       /* shift from 256 character alphabet to 96 printing characters */
       for ( j = 1; j <= n; j ++ ) mess[j] -= 32; 
       /* message initialization */
@@ -56,8 +59,8 @@ int main ( void )
       }
       /* message termination */
       nrc_arcode ( &nch, &code, &lcode, &lc, 1, &acode ); 
-      printf ( "Length of line input,  coded = %lu %lu\n", n, lc - 1 ); 
-      /* here we decode the message,  hopefully to get the original back */
+      printf ( "Length of line input, coded = %lu %lu\n", n, lc - 1 ); 
+      /* here we decode the message, hopefully to get the original back */
       lc = 1; 
       nrc_arcode ( &zero, &code, &lcode, &lc, 0, &acode ); 
       for ( j = 1; j <= lcode; j ++ ) {

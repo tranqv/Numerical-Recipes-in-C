@@ -45,15 +45,20 @@ int main ( void )
    pb = nrc_vector ( 1, NP ); 
    for ( i = 1; i <= MP; i ++ )
       for ( j = 1; j <= NP; j ++ ) p[i][j]= 0.0; 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       for ( j = 2; j <= MP; j ++ ) p[j][j - 1]= 1.0; 
       for ( i = 1; i <= MP; i ++ ) {
          for ( j = 1; j <= NP; j ++ ) x[j]=( p[i][j] += xoff[j] ); 
          y[i]= tfunk ( x ); 
       }
       yb = 1.0e30; 
-      printf ( "Input t,  iiter:\n" ); 
-      if ( scanf ( "%f %d", &temptr, &iiter ) == EOF ) break; 
+      printf ( "Input t, iiter:\n" ); 
+      if ( scanf ( "%lf %d", &temptr, &iiter ) == EOF ) break; 
+
+      printf ( "t = %lf, iiter = %d\n", temptr, iiter ); 
+
+      if ( temptr <= 0.0 ) return 1; 
+
       ybb = 1.0e30; 
       nit = 0; 
       for ( jiter = 1; jiter <= 100; jiter ++ ) {

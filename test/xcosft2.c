@@ -20,9 +20,9 @@ int main ( void )
    sReal big, per, scal, small, *data; 
 
    data = nrc_vector ( 1, NP ); 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "Period of cosine in channels ( 2 -%2d )\n", NP ); 
-      scanf ( "%f", &per ); 
+      scanf ( "%lf", &per ); 
       if ( per <= 0.0 ) break; 
       for ( i = 1; i <= NP; i ++ )
          data[i]= cos ( 2.0*PI*( i - 0.5 )/per ); 
@@ -41,7 +41,7 @@ int main ( void )
          printf ( "\n" ); 
       }
       printf ( "press RETURN to continue ...\n" ); 
-      ( void ) getchar (  ); 
+      ( void ) getchar ( ); 
       nrc_cosft2 ( data, NP, - 1 ); 
       big = - 1.0e10; 
       small = 1.0e10; 

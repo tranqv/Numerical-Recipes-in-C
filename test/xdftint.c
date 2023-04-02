@@ -28,24 +28,24 @@ int main ( void )
 {
    sReal a, b, cans, cosint, sans, sinint, w; 
 
-   printf ( "  Omega  Integral cosine*test func  Err" ); 
-   printf ( "    Integral sine*test func   Err\n" ); 
-   for ( ; ;  ) {
+   printf ( "  Omega Integral cosine*test func Err" ); 
+   printf ( "    Integral sine*test func Err\n" ); 
+   for ( ; ; ) {
       printf ( "input c, d:\n" ); 
-      if ( scanf ( "%f %f", &c, &d ) == EOF ) break; 
-      for ( ; ;  ) {
+      if ( scanf ( "%lf %lf", &c, &d ) == EOF ) break; 
+      for ( ; ; ) {
          printf ( "input a, b:\n" ); 
-         if ( scanf ( "%f %f", &a, &b ) == EOF ) break; 
+         if ( scanf ( "%lf %lf", &a, &b ) == EOF ) break; 
          if ( a == b ) break; 
-            for ( ; ;  ) {
-               printf ( "input w:\n" ); 
-               if ( scanf ( "%f", &w ) == EOF ) break; 
-               if ( w < 0.0 ) break; 
-               nrc_dftint ( coscxd, a, b, w, &cosint, &sinint ); 
-               getans ( w, a, b, &cans, &sans ); 
-               printf ( "%15.6e %15.6e %15.6e %15.6e %15.6e\n", 
+         for ( ; ; ) {
+            printf ( "input w:\n" ); 
+            if ( scanf ( "%lf", &w ) == EOF ) break; 
+            if ( w < 0.0 ) break; 
+            nrc_dftint ( coscxd, a, b, w, &cosint, &sinint ); 
+            getans ( w, a, b, &cans, &sans ); 
+            printf ( "%15.6e %15.6e %15.6e %15.6e %15.6e\n", 
                   w, cans, cosint - cans, sans, sinint - sans ); 
-            }
+         }
       }
    }
    printf ( "normal completion\n" ); 

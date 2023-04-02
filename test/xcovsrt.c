@@ -30,7 +30,7 @@ int main ( void )
       printf ( "\n" ); 
    }
    printf ( "press RETURN to continue...\n" ); 
-   ( void ) getchar (  ); 
+   ( void ) getchar ( ); 
    printf ( "\nTest #1 - full fitting\n" ); 
    for ( i = 1; i <= MA; i ++ ) ia[i]= 1; 
    nrc_covsrt ( covar, MA, ia, MA ); 
@@ -39,7 +39,7 @@ int main ( void )
       printf ( "\n" ); 
    }
    printf ( "press RETURN to continue...\n" ); 
-   ( void ) getchar (  ); 
+   ( void ) getchar ( ); 
    printf ( "\nTest #2 - nrc_spread\n" ); 
    for ( i = 1; i <= MA; i ++ )
       for ( j = 1; j <= MA; j ++ ) {

@@ -20,12 +20,12 @@ int main ( void )
    long idum =( - 133 ); 
    sReal pp, xm, dd; 
 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       for ( j = 0; j <= N; j ++ ) dist[j]= 0; 
       do {
          printf ( "Mean of binomial distribution ( 0.0 to %d.0 )", N ); 
          printf ( " - Negative to end:\n" ); 
-         scanf ( "%f", &xm ); 
+         scanf ( "%lf", &xm ); 
       } while ( xm > N ); 
       if ( xm < 0.0 ) break; 
       pp = xm/NN; 
@@ -33,7 +33,7 @@ int main ( void )
          j = nrc_bnldev ( pp, NN, &idum ); 
          if ( j >= 0 && j <= N ) ++ dist[j]; 
       }
-      printf ( "Binomial - distributed deviate,  mean %5.2f of %6d points\n", 
+      printf ( "Binomial - distributed deviate, mean %5.2f of %6d points\n", 
          xm, NPTS ); 
       printf ( "%4s %8s %10s\n", "x", "p ( x )", "graph:" ); 
       for ( j = 0; j < N; j ++ ) {
@@ -43,7 +43,7 @@ int main ( void )
          if ( klim > LLEN ) klim = LLEN; 
          for ( k = 1; k <= klim; k ++ ) txt[k]='*'; 
          txt[LLEN]='\0'; 
-         printf ( "%4d %9.4f   %s\n", j, dd, txt ); 
+         printf ( "%4d %9.4f %s\n", j, dd, txt ); 
       }
    }
    return 0; 

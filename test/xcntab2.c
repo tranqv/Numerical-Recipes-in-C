@@ -46,14 +46,14 @@ int main ( void )
       printf ( "\n" ); 
    }
    nrc_cntab2 ( nmbr, NI, NMON, &h, &hx, &hy, &hygx, &hxgy, &uygx, &uxgy, &uxy ); 
-   printf ( "\n       entropy of table           %10.4f\n", h ); 
-   printf ( "       entropy of x - distribution  %10.4f\n", hx ); 
-   printf ( "       entropy of y - distribution  %10.4f\n", hy ); 
-   printf ( "       entropy of y given x       %10.4f\n", hygx ); 
-   printf ( "       entropy of x given y       %10.4f\n", hxgy ); 
-   printf ( "       dependency of y on x       %10.4f\n", uygx ); 
-   printf ( "       dependency of x on y       %10.4f\n", uxgy ); 
-   printf ( "       symmetrical dependency     %10.4f\n", uxy ); 
+   printf ( "\n entropy of table %10.4f\n", h ); 
+   printf ( "       entropy of x - distribution %10.4f\n", hx ); 
+   printf ( "       entropy of y - distribution %10.4f\n", hy ); 
+   printf ( "       entropy of y given x %10.4f\n", hygx ); 
+   printf ( "       entropy of x given y %10.4f\n", hxgy ); 
+   printf ( "       dependency of y on x %10.4f\n", uygx ); 
+   printf ( "       dependency of x on y %10.4f\n", uxgy ); 
+   printf ( "       symmetrical dependency %10.4f\n", uxy ); 
    nrc_free_imatrix ( nmbr, 1, NI, 1, NMON ); 
    return 0; 
 }

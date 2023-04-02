@@ -43,7 +43,7 @@ int main ( void )
    nrc_cyclic ( a, b, c, alpha, nrc_beta, r, x, N ); 
    nrc_ludcmp ( aa, N, indx, &d ); 
    nrc_lubksb ( aa, N, indx, r ); 
-   for ( i = 1; i <= N; i ++ ) printf ( "%4d  %12.6e\n", i, ( x[i]- r[i] )/( x[i]+ r[i] ) ); 
+   for ( i = 1; i <= N; i ++ ) printf ( "%4d %12.6e\n", i, ( x[i]- r[i] )/( x[i]+ r[i] ) ); 
    nrc_free_matrix ( aa, 1, N, 1, N ); 
    nrc_free_vector ( x, 1, N ); 
    nrc_free_vector ( r, 1, N ); 

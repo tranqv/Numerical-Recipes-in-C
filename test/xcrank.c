@@ -48,7 +48,7 @@ int main ( void )
       printf ( "\n" ); 
    }
    printf ( " press return to continue ...\n" ); 
-   getchar (  ); 
+   getchar ( ); 
    /* Replace solar flux in each column by nrc_rank order */
    for ( j = 1; j <= 12; j ++ ) {
       for ( i = 1; i <= NDAT; i ++ ) {

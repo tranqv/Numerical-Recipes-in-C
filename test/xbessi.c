@@ -10,6 +10,8 @@
 #include "nrc.h"
 #include "nrc_util.h"
 
+#include <math.h>
+
 #define MAXSTR 80
 
 int main ( void )

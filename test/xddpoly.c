@@ -17,7 +17,7 @@ int main ( void )
    int i, j, k; 
    sReal x, pwr, *pd, **d; 
    static sReal c[NC + 1]={- 1.0, 5.0, - 10.0, 10.0, - 5.0, 1.0}; 
-   static char *a[ND + 1]={"polynomial:",  "first deriv:", 
+   static char *a[ND + 1]={"polynomial:", "first deriv:", 
       "second deriv:", "third deriv:", "fourth deriv:"}; 
 
    pd = nrc_vector ( 0, ND ); 
@@ -38,7 +38,7 @@ int main ( void )
             ( nrc_factrl ( NC )/nrc_factrl ( NC - i ) )*pwr ); 
       }
       printf ( "press ENTER to continue...\n" ); 
-      ( void ) getchar (  ); 
+      ( void ) getchar ( ); 
    }
    nrc_free_matrix ( d, 0, ND, 1, NP ); 
    nrc_free_vector ( pd, 0, ND ); 

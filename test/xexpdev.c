@@ -28,7 +28,7 @@ int main ( void )
    }
    for ( i = 1; i <= 20; i ++ ) total += x[i]; 
    printf ( "\nexponential distribution with %7d points\n", NPTS ); 
-   printf ( "    interval      observed     expected\n\n" ); 
+   printf ( "    interval observed expected\n\n" ); 
    for ( i = 1; i <= 20; i ++ ) {
       xx =( sReal ) x[i]/total; 
       expect = exp ( -( trig[i - 1]+ trig[i] )/2.0 ); 
