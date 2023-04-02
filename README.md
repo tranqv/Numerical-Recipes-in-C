@@ -33,7 +33,7 @@ For example, to run everything, you can do like this:
     bash sh.make.dev  all 
     bash sh.make all 
 
-The latter command compiles all the codes in **src/**, prepares the header files, i.e., **src/\*.h**, creates the library **libNRinC.a**, compiles all programs in **test/** and excecutes them right away. 
+The latter command compiles all the codes in **src/**, prepares the header files, i.e., **src/\*.h**, creates the library **libNRinC.a**, compiles all programs in **test/** and executes them right away. 
 
 You can see how to compile and link your program to the library. You can change everything inside the script **sh.make.dev**.
 
