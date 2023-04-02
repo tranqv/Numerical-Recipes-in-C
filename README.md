@@ -44,15 +44,23 @@ Minor notes:
 
     To run a command with a time limit. More information: <https://www.gnu.org/software/coreutils/timeout>. 
 
-In case you dont have it, install it by one of the following:
-
-    Debian      apt-get install coreutils 
-    Ubuntu      apt-get install coreutils 
-    Arch Linux  pacman -S coreutils 
-    CentOS      yum install coreutils 
-    OS X        brew install coreutils 
-
-Ref.:
+In case you dont have it, read this:
     https://command-not-found.com/timeout
 
-(2) ...
+(2) If you dont have **ar**, read
+    https://command-not-found.com/ar
+    
+    If you have no **gcc**, read 
+    https://command-not-found.com/gcc
+
+(3) If you want to try with **icc** in , e.g., Debian, then follow this:
+
+    wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB | gpg --dearmor | sudo tee /usr/share/keyrings/oneapi-archive-keyring.gpg > /dev/null
+
+    echo "deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
+
+    apt-get update 
+    apt-get upgrade -y 
+    apt-get install -y intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic
+    
+(4) ...
