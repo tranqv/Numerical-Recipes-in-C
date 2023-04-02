@@ -48,7 +48,7 @@ int main ( void )
       printf ( "%12.6f %12.6f\n", yout[3], b3 ); 
       printf ( "%12.6f %12.6f\n", yout[4], b4 ); 
       printf ( "\nPress RETURN to continue...\n" ); 
-      ( void ) getchar (  ); 
+      ( void ) getchar ( ); 
    }
    nrc_free_vector ( dydx, 1, NVAR ); 
    nrc_free_vector ( yout, 1, NVAR ); 

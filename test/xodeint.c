@@ -10,10 +10,10 @@
 
 #define N 4
 
-sReal dxsav, *xp, **yp;   /* defining declarations */
+sReal dxsav, *xp, **yp; /* defining declarations */
 int kmax, kount; 
 
-int nrhs;    /* counts function evaluations */
+int nrhs; /* counts function evaluations */
 
 void nrc_derivs ( sReal x, sReal y[], sReal dydx[] )
 {

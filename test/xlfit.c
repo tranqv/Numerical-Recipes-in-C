@@ -56,7 +56,7 @@ int main ( void )
       printf ( "\n" ); 
    }
    printf ( "\npress RETURN to continue...\n" ); 
-   ( void ) getchar (  ); 
+   ( void ) getchar ( ); 
    /* Now check results of restricting nrc_fit parameters */
    for ( i = 2; i <= NTERM; i += 2 ) ia[i]= 0; 
    nrc_lfit ( x, y, sig, NPT, a, ia, NTERM, covar, &chisq, funcs ); 

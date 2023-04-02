@@ -54,7 +54,7 @@ int main ( void )
    nrc_dsprsax ( sa, ija, x, bcmp, NP ); 
    /* this is a dReal precision version of nrc_sprsax */
    printf ( "\npress RETURN to continue...\n" ); 
-   ( void ) getchar (  ); 
+   ( void ) getchar ( ); 
    printf ( "test of solution nrc_vector:\n" ); 
    printf ( "%9s %12s\n", "a*x", "b" ); 
    for ( i = 1; i <= NP; i ++ )

@@ -30,9 +30,12 @@ int main ( void )
    nrc_beta = nrc_vector ( 1, 2*NP - 1 ); 
 
    /* Test with w[x] = - log x */
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "Enter N\n" ); 
       if ( scanf ( "%d", &n ) == EOF ) break; 
+
+      if ( n < 0 ) return 1 ; 
+
       alpha[1]= 0.5; 
       nrc_beta[1]= 1.0; 
       for ( i = 2; i <= 2*n - 1; i ++ ) {
@@ -48,7 +51,7 @@ int main ( void )
       printf ( "%3s %10s %14s\n", "#", "x ( i )", "w ( i )" ); 
       for ( i = 1; i <= n; i ++ ) printf ( "%3d %14.6e %14.6e\n", i, x[i], w[i] ); 
       for ( check = 0.0, i = 1; i <= n; i ++ ) check += w[i]; 
-      printf ( "\nCheck value: %15.7e  should be: %15.7e\n", check, amu0 ); 
+      printf ( "\nCheck value: %15.7e should be: %15.7e\n", check, amu0 ); 
       /* demonstrate the use of ORTHOG for an integral */
       for ( xx = 0.0, i = 1; i <= n; i ++ ) xx += w[i]*func ( x[i] ); 
       printf ( "\nIntegral from nrc_orthog: %12.6f\n", xx ); 

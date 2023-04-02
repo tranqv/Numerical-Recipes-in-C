@@ -46,7 +46,7 @@ int main ( void )
       nrc_mrqmin ( x, y, sig, NPT, a, ia, MA, covar, alpha, &chisq, nrc_fgauss, &alamda ); 
       k = 1; 
       itst = 0; 
-      for ( ; ;  ) {
+      for ( ; ; ) {
          printf ( "\n%s %2d %17s %10.4f %10s %9.2e\n", "Iteration #", k, 
             "chi - squared:", chisq, "alamda:", alamda ); 
          printf ( "%8s %8s %8s %8s %8s %8s\n", 
@@ -73,7 +73,7 @@ int main ( void )
       }
       if ( iter == 1 ) {
          printf ( "press return to continue with constraint\n" ); 
-         ( void ) getchar (  ); 
+         ( void ) getchar ( ); 
          printf ( "holding a[2] and a[5] constant\n" ); 
          for ( j = 1; j <= MA; j ++ ) a[j] += 0.1; 
          a[2]= 2.0; 

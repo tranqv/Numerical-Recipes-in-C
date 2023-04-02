@@ -29,9 +29,9 @@ int main ( void )
    }
    nrc_fit ( x, y, NPT, sig, mwt, &a, &b, &siga, &sigb, &chi2, &q ); 
    printf ( "\nAccording to routine FIT the result is:\n" ); 
-   printf ( "   a =  %8.4f   uncertainty:  %8.4f\n", a, siga ); 
-   printf ( "   b =  %8.4f   uncertainty:  %8.4f\n", b, sigb ); 
-   printf ( "   chi - squared:  %8.4f  for  %4d  points\n", chi2, NPT ); 
+   printf ( "   a =  %8.4f uncertainty:  %8.4f\n", a, siga ); 
+   printf ( "   b =  %8.4f uncertainty:  %8.4f\n", b, sigb ); 
+   printf ( "   chi - squared:  %8.4f for %4d points\n", chi2, NPT ); 
    printf ( "   goodness - of - nrc_fit:  %8.4f\n", q ); 
    printf ( "\nAccording to routine MEDFIT the result is:\n" ); 
    nrc_medfit ( x, y, NPT, &a, &b, &abdev ); 

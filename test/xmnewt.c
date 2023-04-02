@@ -63,7 +63,7 @@ int main ( void )
                printf ( "%5d %14.6f %15.6f\n", 
                   i, x[i], fvec[i] ); 
             printf ( "\npress RETURN to continue...\n" ); 
-            ( void ) getchar (  ); 
+            ( void ) getchar ( ); 
          }
       }
    }

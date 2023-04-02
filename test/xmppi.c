@@ -65,7 +65,7 @@ int main ( void )
 {
    int n; 
 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "Input n\n" ); 
       if ( scanf ( "%d", &n ) == EOF ) break; 
       mpsqr2 ( n ); 

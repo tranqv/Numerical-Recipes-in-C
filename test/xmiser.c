@@ -9,9 +9,9 @@
 #include "nrc.h"
 #include "nrc_util.h"
 
-long idum;      /* for ranno */
+long idum; /* for ranno */
 
-int ndim;       /* for func */
+int ndim; /* for func */
 sReal xoff; 
 
 sReal func ( sReal pt[] )
@@ -34,9 +34,9 @@ int main ( void )
    printf ( "IDUM =\n" ); 
    scanf ( "%ld", &idum ); 
    if ( idum > 0 ) idum = - idum; 
-   for ( ; ;  ) {
+   for ( ; ; ) {
       printf ( "ENTER N, NDIM, XOFF, DITH, NTRIES\n" ); 
-      if ( scanf ( "%ld %d %f %f %d", &n, &ndim, &xoff, &dith, &ntries ) == EOF ) break; 
+      if ( scanf ( "%ld %d %lf %lf %d", &n, &ndim, &xoff, &dith, &ntries ) == EOF ) break; 
       regn = nrc_vector ( 1, 2*ndim ); 
       sumav = sumsd = 0.0; 
       for ( nt = 1; nt <= ntries; nt ++ ) {
