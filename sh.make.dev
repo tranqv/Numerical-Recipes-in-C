@@ -9,9 +9,9 @@
 #
 #        ./sh.make.dev
 #
-#     then you'll know what to do. Make sure you install in advance 
-#
-#        gcc, ar, timeout 
+#     then you'll know what to do. Make sure you did in advance 
+#        chmod +x sh.make
+#     so that the script can run in such manner.
 #
 ########################################################################
 
@@ -41,6 +41,8 @@
 
    IINC=`pwd`/src 
 
+   PDAT=`pwd`/$DAT 
+
    libna='libNRinC.a'
 
    mylib=${OLIB}/${libna}
@@ -53,6 +55,9 @@
 #  arFLAG="r"
    arFLAG="rcs"
 
+
+   Delay='timeout'
+   Dtime='1s'
 
 #
 #  GNU COMPILER:
@@ -71,9 +76,12 @@ _use_gfortran ()
 _use_gcc ()
 {
    COMP="gcc"
+#  DEPS="-Wall -fstack-arrays -static -finit-local-zero -std=legacy"
+#  DEPS="-Wall -fdefault-real-8"
 #  DEPS="-std=c90"
    DEPS="-ansi"
    OPTI="-O3"
+#  FLAG="$OPTI $DEPS -I ./ -J $IINC "
    FLAG="$OPTI $DEPS -I ./ -I $IINC "
 }
 
@@ -84,7 +92,8 @@ _use_gcc ()
 
 _use_ifort ()
 {
-   COMP="ifort"
+#  COMP="ifort"
+   COMP="icc_run ifort"
 #  DEPS="-fno-alias -static -zero "
    DEPS=" "
    OPTI="-O3"
@@ -94,7 +103,9 @@ _use_ifort ()
 
 _use_icc ()
 {
-   COMP="icc"
+#  COMP="ifort"
+   COMP="icc_run icc"
+#  DEPS="-fno-alias -static -zero "
 #  DEPS="-ansi"
    DEPS="-diag-disable=10441 -ansi"
    OPTI="-O3"
@@ -138,17 +149,19 @@ cat << XXX
       $0       cleanmd5       _clean_md5 
       $0       clean          _make_clean 
       $0       distclean      _make_distclean 
-      $0       all            _make_lib && _make_test 
+      $0       all            _clean_md5 && _make_lib && _make_test 
       $0       showme         _make_showme    
+      $0       test  xr*.c    _make_main_glob  test  xr*.c  
 
 Examples:             
-      $0  all         to run everything, i.e., ./sh_make src, lib, and test.
-      $0  distclean   to clean all the outputs. 
-      $0  clean       to clean only the .o, .exe files
-      $0  cleanmd5    to clean md5 files so that we can recompile all
-      $0  lib         to make the lib ${libna} file. 
-      $0  test        to compile, link, and run all the tests.
-      $0  showme      to show flags to compile programs and link to the lib.
+      $0  all           to run everything, i.e., ./sh_make src, lib, and test.
+      $0  distclean     to clean all the outputs. 
+      $0  clean         to clean only .o and .exe files
+      $0  cleanmd5      to clean md5 files so that we can recompile all
+      $0  lib           to make the lib: ${libna}
+      $0  test          to compile, link, and run all the tests.
+      $0  showme        to show flags to compile programs and link to the lib.
+      $0  test  xr*.c   to compile, link, and run all test/xr*.c files.
 
 At the first time, we can run the following commands stepwise:
       $0  cleanmd5    
@@ -293,7 +306,7 @@ _make_test ()
       g=`basename $f .c`.exe 
       set -x 
       ${COMP} ${OPTI} ${DEPS} -I${OINC}  $f  $mylib -lm -o $g 
-      timeout 1s ./$g
+      $Delay $Dtime ./$g
       set +x 
    done 
 
@@ -311,6 +324,44 @@ _make_test ()
    echo "########################################################################"
 }
 #
+
+
+_make_main_glob ()
+{
+   dir=$1 ; shift ;
+   pat=$1 ; shift ;
+
+
+   echo "########################################################################"
+   echo "Go to $dir"
+
+   here=`pwd`
+
+   aux="$OPTI $DEPS"
+
+   cd $dir
+   ln -fs ${PDAT}/* . 
+
+   for f in `ls $pat `
+   do 
+      echo '----------------------------------------------------------'
+      g=`basename $f .c`.exe 
+      set -x 
+      ${COMP} ${OPTI} ${DEPS} -I${OINC}  $f  $mylib -lm -o $g 
+      $Delay $Dtime ./$g
+      set +x 
+   done 
+
+   cd  .. 
+
+   cd $here 
+   unset here 
+#
+   echo "Done. Leave $dir"
+   echo "########################################################################"
+}
+#
+
 
 
 
@@ -333,7 +384,7 @@ _make_main ()
       g=`basename $f .c`.exe 
       set -x 
       ${COMP} ${OPTI} ${DEPS} -I${OINC}  $f  $mylib -lm -o $g 
-      timeout 5s ./$g
+      $Delay $Dtime ./$g
       set +x 
    done 
 
@@ -546,7 +597,7 @@ _make_lib ()
 
 #  set -x 
 
-if [ $# -gt 0 ] 
+if [ $# -eq 1 ] 
 then 
    opt=$1
    if    [ "$opt" = "clean" ]
@@ -558,9 +609,6 @@ then
    elif  [ "$opt" = "test" ]
    then
       _make_test  
-   elif  [ "$opt" = "main" ]
-   then
-      _make_main  
    elif  [ "$opt" = "lib" ] 
    then 
       _make_lib 
@@ -578,8 +626,15 @@ then
    else
       _print_usage 
       exit 1 ; 
-   fi 
+   fi
+
+elif [ $# -eq 2 ] 
+then 
+
+   _make_main_glob $1 $2 
+
 else
+
    _print_usage 
    exit 1 ; 
 fi 
