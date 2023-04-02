@@ -63,7 +63,7 @@ In case you dont have it, check:
     apt-get upgrade -y 
     apt-get install -y intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic
 
-(3) If you have no **md5sum**, check: 
+(5) If you have no **md5sum**, check: 
     https://command-not-found.com/md5sum
     
 (6) You can remove **timeout** and **md5sum** from the script **sh.make.dev** since they are not so essential.
