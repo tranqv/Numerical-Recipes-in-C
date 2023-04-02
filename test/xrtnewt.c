@@ -18,7 +18,7 @@ static sReal fx ( sReal x )
    return nrc_bessj0 ( x ); 
 }
 
-static void funcd ( sReal x, sReal *fn,  sReal *df )
+static void funcd ( sReal x, sReal *fn, sReal *df )
 {
    *fn = nrc_bessj0 ( x ); 
    *df = - nrc_bessj1 ( x ); 
@@ -33,11 +33,11 @@ int main ( void )
    xb2 = nrc_vector ( 1, NBMAX ); 
    nrc_zbrak ( fx, X1, X2, N, xb1, xb2, &nb ); 
    printf ( "\nRoots of nrc_bessj0:\n" ); 
-   printf ( "%21s %15s\n", "x", "f ( x )" ); 
+   printf ( "%8s %17s %17s\n", "", "x", "f ( x )" ); 
    for ( i = 1; i <= nb; i ++ ) {
       xacc =( 1.0e-6 )*( xb1[i]+ xb2[i] )/2.0; 
       root = nrc_rtnewt ( funcd, xb1[i], xb2[i], xacc ); 
-      printf ( "root %3d %14.6f %14.6f\n", i, root, fx ( root ) ); 
+      printf ( "root %3d %17.9e %17.9e\n", i, root, fx ( root ) ); 
    }
    nrc_free_vector ( xb2, 1, NBMAX ); 
    nrc_free_vector ( xb1, 1, NBMAX ); 
