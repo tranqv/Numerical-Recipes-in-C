@@ -42,11 +42,7 @@ Minor notes:
 
     timeout
 
-    Run a command with a time limit. More information: <https://www.gnu.org/software/coreutils/timeout>. 
-
-Read from 
-
-    https://command-not-found.com/timeout
+    To run a command with a time limit. More information: <https://www.gnu.org/software/coreutils/timeout>. 
 
 In case you dont have it, install it by one of the following:
 
@@ -56,4 +52,7 @@ In case you dont have it, install it by one of the following:
     CentOS      yum install coreutils 
     OS X        brew install coreutils 
 
-(2) ???
+Ref.:
+    https://command-not-found.com/timeout
+
+(2) ...
