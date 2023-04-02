@@ -17,15 +17,19 @@ It works in Linux.
 
 You need a C compiler, e.g., **gcc** or **icc**. You also need the **ar**, **timeout**, and **md5sum** commands, where **timeout** is only for running tests, and **md5sum** is for calculating MD5 hashes in the script **sh.make.dev**.
 
+If you dont like **timeout** or **md5sum**, use **sh.make** instead of **sh.make.dev**.
+
 In Linux terminal, perform the command:
 
     bash sh.make.dev
+    bash sh.make
 
 Then, read the guide on your screen. 
 
 For example, to run everything, you can do like this:
 
     bash sh.make.dev  all 
+    bash sh.make all 
 
 The latter command compiles all the codes in **src/**, prepares the header files, i.e., **src/\*.h**, creates the library **libNRinC.a**, compiles all programs in **test/** and excecutes them right away. 
 
@@ -68,4 +72,6 @@ In case you dont have it, check:
     
 (6) You can remove **timeout** and **md5sum** from the script **sh.make.dev** since they are not so essential.
 
-(7) ...
+(7) If you dont like **timeout** or **md5sum**, use the new script **sh.make**.
+
+(8) ...
