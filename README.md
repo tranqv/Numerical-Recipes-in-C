@@ -72,4 +72,8 @@ Minor notes:
 
 (8) Tests now can run smoothly and properly. Many things were made to **test/**, e.g., adding input files, correcting formats for the scanf and fscanf routines, etc.
 
-(9) ...
+(9) To run in Windows, you can install **cygwin**, then **bash**, **gcc**, and **ar**. The script **sh.make** should work.
+
+    https://www.cygwin.com/
+
+(10) ...
