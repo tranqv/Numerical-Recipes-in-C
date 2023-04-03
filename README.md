@@ -17,7 +17,7 @@ It works in Linux.
 
 You need a C compiler, e.g., **gcc** or **icc**. You also need the **ar** command.
 
-There are two optional commands, i.e., **timeout** and **md5sum**, where **timeout** is only for running tests, and **md5sum** is for calculating MD5 cryptographic checksums in the script **sh.make.dev**.
+There are two optional commands, i.e., **timeout** and **md5sum**, where **timeout** is only for running tests, and **md5sum** is for calculating MD5 cryptographic checksums. They are required in the script **sh.make.dev**.
 
 If you dont like **timeout** or **md5sum**, use **sh.make** instead of **sh.make.dev**.
 
