@@ -89,7 +89,6 @@ _use_gcc ()
 _use_icc ()
 {
    COMP="icc"
-#  COMP="icc_run icc"
 #  DEPS="-ansi"
    DEPS="-diag-disable=10441 -ansi"
    OPTI="-O3"
