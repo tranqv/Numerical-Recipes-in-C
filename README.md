@@ -13,7 +13,7 @@ Many things have been changed, e.g., all the subroutine names. This version of t
 
 # How to use? 
 
-It works in Linux. 
+It works in Linux. [It may also works in Windows. Read (9).]
 
 You need a C compiler, e.g., **gcc** or **icc**. You also need the **ar** command.
 
