@@ -9,7 +9,7 @@ This package includes all the source codes of the well-known book:
     
     http://numerical.recipes/
 
-Many things have been changed, e.g., all the names of subroutine. This version of the code is more portable than the original one.
+Many things have been changed, e.g., all the subroutine names. This version of the code is more portable than the original one.
 
 # How to use? 
 
