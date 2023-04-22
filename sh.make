@@ -28,7 +28,7 @@
 #
 #
 
-   aDIR=( $SRC $TST )
+   aDIR=( $SRC $TST main )
    nDIR=${#aDIR[@]}
 
    aSRC=( $SRC )
@@ -88,7 +88,8 @@ _use_gcc ()
 
 _use_icc ()
 {
-   COMP="icc"
+#  COMP="icc"
+   COMP="icc_run icc"
 #  DEPS="-ansi"
    DEPS="-diag-disable=10441 -ansi"
    OPTI="-O3"
@@ -123,28 +124,32 @@ _use_icc ()
 _print_usage ()
 {
 cat << XXX
-      COMMAND         ARGUMENT       ROUTINE 
-      $0       lib            _make_lib 
-      $0       test           _make_test  
-      $0       clean          _make_clean 
-      $0       distclean      _make_distclean 
-      $0       all            _make_clean && _make_lib && _make_test 
-      $0       showme         _make_showme    
-      $0       test  xr*.c    _make_main_glob  test  xr*.c  
+   COMMAND      ARGUMENT       ROUTINE 
+   $0    lib            _make_lib 
+   $0    test           _make_test  
+   $0    clean          _make_clean 
+   $0    distclean      _make_distclean 
+   $0    all            _make_clean && _make_lib && _make_test 
+   $0    showme         _make_showme    
+   $0    test  xr*.c    _make_main_glob  test  xr*.c  
+   $0    compile x.c -o x.exe  _make_compile x.c -o x.exe
 
 Examples:             
-      $0  all           to run everything, i.e., ./sh_make src, lib, and test.
-      $0  distclean     to clean all the outputs. 
-      $0  clean         to clean only .o and .exe files
-      $0  lib           to make the lib: ${libna}
-      $0  test          to compile, link, and run all the tests.
-      $0  showme        to show flags to compile programs and link to the lib.
-      $0  test  xr*.c   to compile, link, and run all test/xr*.c files.
+   $0  all              to run everything, i.e., ./sh_make lib and test.
+   $0  distclean        to clean all the outputs. 
+   $0  clean            to clean only .o and .exe files
+   $0  lib              to complie source and make the lib: ${libna}
+   $0  test             to compile, link, and run all the tests.
+   $0  showme           to show flags to compile programs and link to the lib.
+   $0  test xr*.c       to compile, link, and run all test/xr*.c files.
+   $0  test xgaussj.c   to compile, link, and run only test/xgaussj.c
+   $0  compile test/xgaussj.c -o xgaussj.exe  
+                        to compile test/xgaussj.c, and produce xgaussj.exe  
 
 At the first time, we can run the following commands stepwise:
-      $0  clean       
-      $0  lib        
-      $0  test      
+   $0  clean      
+   $0  lib        
+   $0  test      
 XXX
 }
 #
@@ -199,7 +204,6 @@ _make_main_glob ()
    dir=$1 ; shift ;
    pat=$1 ; shift ;
 
-
    echo "########################################################################"
    echo "Go to $dir"
 
@@ -234,6 +238,15 @@ _make_main_glob ()
 }
 #
 
+_make_compile ()
+{
+   aux="$OPTI $DEPS"
+   cmd="${COMP} ${OPTI} ${DEPS} -I${OINC}  $@  $mylib -lm "
+   echo 
+   echo $cmd 
+   eval $cmd 
+}
+
 
 _make_showme ()
 {
@@ -256,8 +269,8 @@ _make_clean_prim ()
    then 
       echo "Go to ${d}/"
       cd $d 
-      echo "   rm -f *.o *.mod *.exe *.a *.out"
-      rm -f *.o *.mod *.exe *.a *.out
+      echo "   rm -f *.o *.mod *.exe *.a *.out *.dat "
+      rm -f *.o *.mod *.exe *.a *.out *.dat 
       echo "Left ${d}/"
    fi 
 }  
@@ -268,20 +281,13 @@ _make_clean_prim ()
 _make_clean ()
 {
    here=`pwd`
-
    for (( i=0; i<${nDIR}; i++ ))
    do 
       d=${aDIR[$i]}
       _make_clean_prim $d 
       cd $here 
    done 
-
-   for d in $TST
-   do
-      _make_clean_prim examples/$d 
-      cd $here 
-   done 
-
+   _make_clean_prim $here 
    unset here 
 }  
 # 
@@ -407,7 +413,7 @@ _make_lib ()
 
 #  set -x 
 
-if [ $# -eq 1 ] 
+if [ $# -gt 0 ] 
 then 
    opt=$1
    if    [ "$opt" = "clean" ]
@@ -418,7 +424,12 @@ then
       _make_distclean 
    elif  [ "$opt" = "test" ]
    then
-      _make_test  
+      if [ $# -eq 2 ] 
+      then 
+         _make_main_glob $1 $2 
+      else 
+         _make_test  
+      fi 
    elif  [ "$opt" = "lib" ] 
    then 
       _make_lib 
@@ -430,16 +441,14 @@ then
    elif [ "$opt" = "showme" ]
    then 
       _make_showme 
+   elif  [ "$opt" = "compile" ] 
+   then 
+      shift 
+      _make_compile $@
    else
       _print_usage 
       exit 1 ; 
    fi
-
-elif [ $# -eq 2 ] 
-then 
-
-   _make_main_glob $1 $2 
-
 else
 
    _print_usage 
