@@ -66,7 +66,7 @@ Minor notes:
 (5) If you have no **md5sum**, check: 
     https://command-not-found.com/md5sum
     
-(6) You can remove **timeout** and **md5sum** from the script **sh.make.dev** since they are not so essential.
+(6) You can remove **timeout** and **md5sum** from the script **sh.make.dev** since they are not essential.
 
 (7) Use the new script **sh.make** if you dont like **timeout** or **md5sum**. 
 
@@ -76,4 +76,6 @@ Minor notes:
 
     https://www.cygwin.com/
 
-(10) ...
+(10) We can make all the codes to run with quadruple precision (real numbers with 16 bytes) by editing this file: src/nrc_types.h
+
+(11) ...
