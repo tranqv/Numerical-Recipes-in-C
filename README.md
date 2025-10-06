@@ -76,6 +76,6 @@ Minor notes:
 
     https://www.cygwin.com/
 
-(10) We can make all the codes to run with quadruple precision (real numbers with 16 bytes) by editing this file: src/nrc_types.h
+(10) We can make all the codes to run with the quadruple precision (i.e., 16 bytes long real numbers) by editing this file: src/nrc_types.h
 
 (11) ...
