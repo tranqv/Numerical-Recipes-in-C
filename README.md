@@ -53,7 +53,7 @@ Minor notes:
 (3) If you have no **gcc**, check: 
     https://command-not-found.com/gcc
 
-(4) If you want to try with **icc** in , e.g., Debian, then follow these steps:
+(4) If you want to try with **icc** in , e.g., Debian, then follow these steps: (the following hint might be obsolete! Check around and use a suitable solution)
 
     wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB | gpg --dearmor | sudo tee /usr/share/keyrings/oneapi-archive-keyring.gpg > /dev/null
 
