@@ -33,6 +33,7 @@ Then, read the text message on your screen to know how to use.
 For example, to run everything, you can do like this:
 
     bash sh.make.dev  all 
+Or 
     bash sh.make  all 
 
 The latter command compiles all the codes in **src/**, prepares the header files, i.e., **src/\*.h**, creates the library **libNRinC.a**, compiles all programs in **test/** and executes them right away. 
