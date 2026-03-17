@@ -28,6 +28,7 @@ In Linux terminal, perform the command:
 
     bash sh.make
 )
+
 Then, read the text message on your screen to know how to use. 
 
 For example, to run everything, you can do like this:
@@ -37,6 +38,7 @@ For example, to run everything, you can do like this:
 
     bash sh.make  all 
 )
+
 The latter command compiles all the codes in **src/**, prepares the header files, i.e., **src/\*.h**, creates the library **libNRinC.a**, compiles all programs in **test/** and executes them right away. 
 
 You can see how to compile and link your program to the library. You can change everything inside the script **sh.make.dev** (or **sh.make**).
