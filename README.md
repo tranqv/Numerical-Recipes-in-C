@@ -23,8 +23,9 @@ If you dont like **timeout** or **md5sum**, use **sh.make** instead of **sh.make
 
 In Linux terminal, perform the command:
 
-    bash sh.make.dev
+    bash sh.make.dev    
 Or     
+
     bash sh.make
 
 Then, read the text message on your screen to know how to use. 
