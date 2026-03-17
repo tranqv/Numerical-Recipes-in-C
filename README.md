@@ -24,22 +24,22 @@ If you dont like **timeout** or **md5sum**, use **sh.make** instead of **sh.make
 In Linux terminal, perform the command:
 
     bash sh.make.dev    
-Or     
+(Or     
 
     bash sh.make
-
+)
 Then, read the text message on your screen to know how to use. 
 
 For example, to run everything, you can do like this:
 
     bash sh.make.dev  all 
-Or 
+(Or 
 
     bash sh.make  all 
-
+)
 The latter command compiles all the codes in **src/**, prepares the header files, i.e., **src/\*.h**, creates the library **libNRinC.a**, compiles all programs in **test/** and executes them right away. 
 
-You can see how to compile and link your program to the library. You can change everything inside the script **sh.make.dev**.
+You can see how to compile and link your program to the library. You can change everything inside the script **sh.make.dev** (or **sh.make**).
 
 One more thing: all real numbers are compiled with double precision (i.e., 8 bytes, double) instead of single precision (4 bytes, float) as in the original version. Make your own setting in **src/nrc_types.h**.
 
