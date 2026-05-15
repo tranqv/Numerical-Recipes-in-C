@@ -85,3 +85,5 @@ Minor notes:
 (10) We can make all the codes to run with the quadruple precision (i.e., 16 bytes long real numbers) by editing this file: **src/nrc_types.h**
 
 (11) ...
+
+Contact: viet204@gmail.com 
